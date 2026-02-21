@@ -18,23 +18,25 @@ body {
   color: #4b1e5c;
 }
 
-/* ========== STITCHED TOP + BOTTOM ========== */
+/* ========== BLACK STITCHED TOP + BOTTOM ========== */
 body::before,
 body::after {
   content: "";
   position: fixed;
   left: 0;
   width: 100%;
-  height: 18px;
-  background:
+  height: 20px;
+  z-index: 2000;
+  background-image:
     repeating-linear-gradient(
       90deg,
       transparent 0px,
-      transparent 12px,
-      #b37ad6 12px,
-      #b37ad6 16px
+      transparent 16px,
+      black 16px,
+      black 19px,
+      transparent 19px,
+      transparent 24px
     );
-  z-index: 2000;
 }
 
 body::before { top: 0; }
@@ -125,28 +127,29 @@ header {
 .hero {
   position: relative;
   text-align: center;
-  padding: 60px 20px 120px;
+  padding: 60px 20px 0;
 }
 
 .hero h1 {
   font-size: 36px;
   max-width: 600px;
   margin: auto;
+  position: relative;
+  z-index: 1;
 }
 
-/* Mascot */
+/* Mascot — only bottom overlaps */
 .mascot {
-  position: absolute;
-  right: 50%;
-  transform: translateX(40%);
-  bottom: -40px;
-  width: 340px;
-  z-index: 10;
+  display: block;
+  margin: -40px auto 0;
+  width: 420px;
+  position: relative;
+  z-index: 2;
 }
 
 /* ========== FADING PRODUCT BOX ========== */
 .product-box {
-  margin: 150px auto 80px;
+  margin: 120px auto 80px;
   width: 280px;
   height: 200px;
   border: 3px dashed #b37ad6;
@@ -209,7 +212,12 @@ header {
   <div class="top-icons">
     <span>?</span>
     <span>♡</span>
-    <span>🛍️</span>
+    <span class="bag-icon">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4b1e5c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6 7h12l-1 14H7L6 7z"/>
+        <path d="M9 7V5a3 3 0 0 1 6 0v2"/>
+      </svg>
+    </span>
   </div>
 </header>
 
@@ -224,13 +232,11 @@ header {
 
 <script>
 
-/* Sidebar toggle */
 function toggleMenu() {
   document.getElementById("sidebar").classList.toggle("open");
   document.getElementById("overlay").classList.toggle("show");
 }
 
-/* Fading product rotator */
 const items = ["Skirts", "Dresses", "Tops", "Shorts", "Accessories"];
 let index = 0;
 const box = document.getElementById("productBox");
