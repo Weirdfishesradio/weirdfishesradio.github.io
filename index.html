@@ -145,7 +145,7 @@ body{
   left:6px;
   top:40px;
   font-size:26px;
-  color:white;
+  color:black;
   z-index:20;
   cursor:pointer;
 }
@@ -154,7 +154,7 @@ body{
 
 .sidebar a{
   display:block;
-  color:white;
+  color:black;
   padding:24px 35px;
   text-decoration:none;
   font-size:20px;
@@ -282,7 +282,50 @@ body{
 
 <div class="overlay" onclick="closeMenu()"></div>
 
-<div class="sidebar" id="sidebar">
+/* SIDEBAR BASE */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -240px; /* hidden */
+  width: 240px;
+  height: 100vh;
+  background: #d8b4f0; /* paler purple */
+  padding-top: 120px;
+  transition: 0.4s ease;
+  z-index: 1000;
+}
+
+/* OPEN STATE */
+.sidebar.open {
+  left: 0;
+}
+
+/* PEEKING STRIP */
+.sidebar::before {
+  content: "";
+  position: absolute;
+  right: -35px; /* thinner peek */
+  top: 0;
+  width: 35px;
+  height: 100%;
+  background: #d8b4f0;
+  box-shadow: 4px 0 10px rgba(0,0,0,0.15);
+}
+
+/* LACE ON PEEKING EDGE */
+.sidebar-lace {
+  position: absolute;
+  right: -35px;
+  top: 0;
+  width: 35px;
+  height: 100%;
+
+  background-image: url("lace.png");
+  background-size: contain;
+  background-repeat: repeat-y;
+  background-position: center;
+  pointer-events: none;
+}
   <a href="#">Skirts</a>
   <a href="#">Dresses</a>
   <a href="#">Tops</a>
