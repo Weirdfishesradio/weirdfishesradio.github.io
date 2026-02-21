@@ -9,69 +9,94 @@
 
 <style>
 
-/* -------- BASE -------- */
+/* ---------- BASE ---------- */
 
 body {
   margin: 0;
-  background: #f6f2ee;
+  background: #f5f1ec;
   color: #111;
   font-family: 'Cormorant Garamond', serif;
   overflow-x: hidden;
 }
 
-/* stitch border around entire page */
+/* stitched frame */
 body::before {
   content: "";
   position: fixed;
-  inset: 15px;
+  inset: 18px;
   border: 1px dashed rgba(0,0,0,0.25);
   pointer-events: none;
 }
 
-/* subtle red accent lines */
-.accent-line {
-  height: 1px;
-  background: #7a1c1c;
-  width: 60px;
-  margin: 20px 0;
+/* subtle grain overlay */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: radial-gradient(rgba(0,0,0,0.03) 1px, transparent 1px);
+  background-size: 4px 4px;
+  pointer-events: none;
 }
 
-/* -------- NAV -------- */
+/* ---------- NAV ---------- */
 
 nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 35px 10%;
+  position: relative;
+  z-index: 10;
 }
 
 .logo {
   font-family: 'Eater', cursive;
-  font-size: 2.3rem;
-  margin-left: 40px; /* moved slightly right */
+  font-size: 2.4rem;
+  margin-left: 60px;
 }
 
-.nav-links a {
-  margin-left: 35px;
-  text-transform: lowercase;
-  letter-spacing: 1px;
+/* hamburger icon */
+
+.menu {
+  width: 28px;
+  cursor: pointer;
+}
+
+.menu div {
+  height: 2px;
+  background: #111;
+  margin: 6px 0;
+  transition: 0.3s;
+}
+
+/* right side icons */
+
+.icons {
+  display: flex;
+  gap: 25px;
+  font-size: 1.2rem;
+}
+
+.icons a {
   color: #7a1c1c;
+  text-decoration: none;
+  transition: 0.3s;
 }
 
-.nav-links a:hover {
-  opacity: 0.6;
+.icons a:hover {
+  transform: scale(1.2);
 }
 
-/* -------- HERO -------- */
+/* ---------- HERO ---------- */
 
 .hero {
-  padding: 120px 12%;
+  padding: 130px 12%;
   max-width: 800px;
 }
 
 .hero h1 {
   font-family: 'Eater', cursive;
-  font-size: 4.8rem;
+  font-size: 5rem;
   margin: 0;
 }
 
@@ -81,12 +106,22 @@ nav {
   max-width: 500px;
 }
 
-/* -------- SHOWCASE BOX -------- */
+/* decorative red underline */
+.hero::after {
+  content: "";
+  display: block;
+  width: 80px;
+  height: 1px;
+  background: #7a1c1c;
+  margin-top: 25px;
+}
+
+/* ---------- SHOWCASE ---------- */
 
 .showcase {
   margin: 120px auto;
-  width: 400px;
-  height: 520px;
+  width: 420px;
+  height: 540px;
   position: relative;
   overflow: hidden;
   border: 1px solid #111;
@@ -105,72 +140,95 @@ nav {
   opacity: 1;
 }
 
-.showcase-title {
-  text-align: center;
-  margin-top: 25px;
-  font-style: italic;
-}
-
-/* -------- SIDEBAR -------- */
-
-.sidebar-trigger {
-  position: fixed;
-  top: 40%;
-  left: 0;
-  width: 25px;
-  height: 120px;
-  background: #111;
-  cursor: pointer;
-  z-index: 20;
-}
+/* ---------- SIDEBAR ---------- */
 
 .sidebar {
   position: fixed;
   top: 0;
-  left: -260px;
-  width: 240px;
+  left: -300px;
+  width: 260px;
   height: 100%;
   background: #111;
-  color: #f6f2ee;
-  padding: 120px 30px;
+  color: #f5f1ec;
+  padding: 120px 40px;
   transition: 0.4s ease;
-  z-index: 25;
+  z-index: 30;
 }
 
 .sidebar.open {
   left: 0;
 }
 
-.sidebar h3 {
-  font-family: 'Eater', cursive;
-  margin-bottom: 30px;
-}
-
-.sidebar a {
-  display: block;
-  margin-bottom: 20px;
-  color: #f6f2ee;
-  letter-spacing: 1px;
-}
-
-/* decorative stitches on sidebar */
+/* stitched edge on sidebar */
 .sidebar::after {
   content: "";
   position: absolute;
-  right: 6px;
+  right: 8px;
   top: 0;
   width: 2px;
   height: 100%;
   background-image: repeating-linear-gradient(
     to bottom,
-    #f6f2ee 0px,
-    #f6f2ee 3px,
+    #f5f1ec 0px,
+    #f5f1ec 3px,
     transparent 3px,
     transparent 12px
   );
 }
 
-/* -------- FOOTER -------- */
+.sidebar h3 {
+  font-family: 'Eater', cursive;
+  margin-bottom: 40px;
+  font-size: 1.5rem;
+}
+
+/* stylized shop links */
+
+.sidebar a {
+  display: block;
+  margin-bottom: 25px;
+  font-size: 1.1rem;
+  letter-spacing: 2px;
+  text-transform: lowercase;
+  color: #f5f1ec;
+  position: relative;
+  transition: 0.3s;
+}
+
+.sidebar a::after {
+  content: "—";
+  position: absolute;
+  right: -15px;
+  opacity: 0;
+  transition: 0.3s;
+}
+
+.sidebar a:hover {
+  letter-spacing: 4px;
+}
+
+.sidebar a:hover::after {
+  opacity: 1;
+}
+
+/* overlay when sidebar open */
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.3);
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.3s;
+  z-index: 20;
+}
+
+.overlay.show {
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* ---------- FOOTER ---------- */
 
 footer {
   padding: 100px 10%;
@@ -184,42 +242,45 @@ footer {
 
 <body>
 
-<div class="sidebar-trigger" onclick="toggleSidebar()"></div>
+<div class="overlay" id="overlay" onclick="closeSidebar()"></div>
+
+<nav>
+  <div class="menu" onclick="toggleSidebar()">
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+
+  <div class="logo">gnawed</div>
+
+  <div class="icons">
+    <a href="about.html">?</a>
+    <a href="#">♡</a>
+    <a href="#">👜</a>
+  </div>
+</nav>
 
 <div class="sidebar" id="sidebar">
-  <h3>shop</h3>
+  <h3>archive</h3>
   <a href="#">skirts</a>
   <a href="#">dresses</a>
   <a href="#">tops</a>
   <a href="#">accessories</a>
 </div>
 
-<nav>
-  <div class="logo">gnawed</div>
-  <div class="nav-links">
-    <a href="#" onclick="toggleSidebar()">shop</a>
-    <a href="about.html">about</a>
-    <a href="#">cart</a>
-  </div>
-</nav>
-
 <section class="hero">
   <h1>gnawed</h1>
-  <div class="accent-line"></div>
   <p>
-    reconstructed garments. hand-altered silhouettes.
-    quiet femininity with tension in the seams.
+    reconstructed garments.
+    soft tension in every seam.
+    quiet silhouettes altered by hand.
   </p>
 </section>
 
 <div class="showcase">
-  <img src="https://via.placeholder.com/400x520?text=Slip+Dress" class="active">
-  <img src="https://via.placeholder.com/400x520?text=Ribbon+Skirt">
-  <img src="https://via.placeholder.com/400x520?text=Sheer+Blouse">
-</div>
-
-<div class="showcase-title">
-  rotating archive selection
+  <img src="https://via.placeholder.com/420x540?text=Slip+Dress" class="active">
+  <img src="https://via.placeholder.com/420x540?text=Ribbon+Skirt">
+  <img src="https://via.placeholder.com/420x540?text=Sheer+Blouse">
 </div>
 
 <footer>
@@ -227,8 +288,15 @@ footer {
 </footer>
 
 <script>
+
 function toggleSidebar() {
   document.getElementById("sidebar").classList.toggle("open");
+  document.getElementById("overlay").classList.toggle("show");
+}
+
+function closeSidebar() {
+  document.getElementById("sidebar").classList.remove("open");
+  document.getElementById("overlay").classList.remove("show");
 }
 
 let slides = document.querySelectorAll(".showcase img");
@@ -239,6 +307,7 @@ setInterval(() => {
   index = (index + 1) % slides.length;
   slides[index].classList.add("active");
 }, 4000);
+
 </script>
 
 </body>
