@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>gnawed</title>
 
@@ -8,266 +9,179 @@
 
 <style>
 
-:root{
-  --pink:#b774a4;   /* paler muted purple */
-  --light:#fcf4fa;
+/* ========== BASE ========== */
+body {
+  margin: 0;
+  font-family: 'Eater', cursive;
+  background: #fff;
+  overflow-x: hidden;
+  color: #4b1e5c;
 }
 
-body{
-  margin:0;
-  font-family:'Eater', cursive;
-  background:var(--light);
-  background-image: radial-gradient(#efd9ea 1px, transparent 1px);
-  background-size:22px 22px;
-  overflow-x:hidden;
-  color:black;
-}
-
-/* REAL STITCHING TOP + BOTTOM */
-
-.stitch{
-  position:fixed;
-  left:0;
-  width:100%;
-  height:22px;
-  z-index:2;
+/* ========== STITCHED TOP + BOTTOM ========== */
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  left: 0;
+  width: 100%;
+  height: 18px;
   background:
     repeating-linear-gradient(
       90deg,
-      transparent 0 12px,
-      var(--pink) 12px 14px,
-      transparent 14px 26px
+      transparent 0px,
+      transparent 12px,
+      #b37ad6 12px,
+      #b37ad6 16px
     );
+  z-index: 2000;
 }
 
-.stitch::before{
-  content:"";
-  position:absolute;
-  top:50%;
-  left:0;
-  width:100%;
-  height:2px;
-  background:var(--pink);
-  transform:translateY(-50%);
+body::before { top: 0; }
+body::after { bottom: 0; }
+
+/* ========== HEADER ========== */
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px 20px;
+  position: relative;
 }
 
-.stitch.top{ top:0; }
-.stitch.bottom{ bottom:0; }
-
-/* TOP BAR */
-
-.topbar{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:35px 50px;
-  position:relative;
-  z-index:5;
+.logo {
+  font-size: 50px;
+  letter-spacing: 3px;
+  margin-left: 40px;
 }
 
-.brand{
-  font-size:32px;
-  letter-spacing:5px;
+/* ========== HAMBURGER ========== */
+.hamburger {
+  position: fixed;
+  left: 6px;
+  top: 25px;
+  font-size: 28px;
+  cursor: pointer;
+  z-index: 3000;
+  color: #7b3fa6;
 }
 
-.right-icons{
-  display:flex;
-  gap:28px;
-  align-items:center;
+/* ========== SIDEBAR ========== */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -230px;
+  width: 230px;
+  height: 100vh;
+  background: #e3c6f5;
+  padding-top: 140px;
+  transition: 0.4s ease;
+  z-index: 2500;
 }
 
-.icon{
-  font-size:24px;
-  cursor:pointer;
-  transition:0.3s;
+.sidebar.open {
+  left: 0;
 }
 
-.icon:hover{
-  transform:scale(1.1);
+/* Peeking strip */
+.sidebar::before {
+  content: "";
+  position: absolute;
+  right: -28px;
+  top: 0;
+  width: 28px;
+  height: 100%;
+  background: #e3c6f5;
+  box-shadow: 4px 0 10px rgba(0,0,0,0.1);
 }
 
-.heart{
-  color:var(--pink);
+/* Lace only on peeking edge */
+.sidebar-lace {
+  position: absolute;
+  right: -28px;
+  top: 0;
+  width: 28px;
+  height: 100%;
+  background-image: url("lace.png");
+  background-size: contain;
+  background-repeat: repeat-y;
+  background-position: center;
+  pointer-events: none;
 }
 
-.bag{
-  width:26px;
-  height:26px;
-  cursor:pointer;
+.sidebar nav a {
+  display: block;
+  padding: 15px 30px;
+  text-decoration: none;
+  color: #5a2677;
+  transition: 0.3s;
 }
 
-/* SIDEBAR */
-
-.sidebar{
-  position:fixed;
-  top:0;
-  left:-185px; /* thinner peek */
-  width:220px;
-  height:100%;
-  background:var(--pink);
-  padding-top:120px;
-  transition:0.4s;
-  z-index:15;
-  box-shadow:4px 0 25px rgba(0,0,0,0.25);
+.sidebar nav a:hover {
+  background: #d4a9ee;
 }
 
-/* thinner peek strip */
-.sidebar::after{
-  content:"";
-  position:absolute;
-  right:-14px;
-  top:0;
-  width:14px;
-  height:100%;
-  background:var(--pink);
+/* ========== HERO SECTION ========== */
+.hero {
+  position: relative;
+  text-align: center;
+  padding: 60px 20px 120px;
 }
 
-/* VERTICAL FLORAL LACE EDGE */
-.sidebar::before{
-  content:"";
-  position:absolute;
-  right:-14px;
-  top:0;
-  width:14px;
-  height:100%;
-  background:
-    radial-gradient(circle at 50% 8px, white 5px, transparent 6px),
-    radial-gradient(circle at 50% 24px, white 5px, transparent 6px);
-  background-size:14px 32px;
-  background-repeat:repeat-y;
-  opacity:0.85;
+.hero h1 {
+  font-size: 36px;
+  max-width: 600px;
+  margin: auto;
 }
 
-/* Hamburger on peek strip */
-
-.peek-hamburger{
-  position:fixed;
-  left:6px;
-  top:40px;
-  font-size:26px;
-  color:black;
-  z-index:20;
-  cursor:pointer;
+/* Mascot */
+.mascot {
+  position: absolute;
+  right: 50%;
+  transform: translateX(40%);
+  bottom: -40px;
+  width: 340px;
+  z-index: 10;
 }
 
-/* Sidebar links */
-
-.sidebar a{
-  display:block;
-  color:black;
-  padding:24px 35px;
-  text-decoration:none;
-  font-size:20px;
-  letter-spacing:2px;
-  transition:0.3s;
+/* ========== FADING PRODUCT BOX ========== */
+.product-box {
+  margin: 150px auto 80px;
+  width: 280px;
+  height: 200px;
+  border: 3px dashed #b37ad6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  transition: opacity 0.8s ease;
 }
 
-.sidebar a:hover{
-  background:rgba(255,255,255,0.2);
+/* ========== ICONS TOP RIGHT ========== */
+.top-icons {
+  position: absolute;
+  right: 20px;
+  top: 25px;
+  display: flex;
+  gap: 20px;
+  font-size: 22px;
 }
 
-.sidebar.active{
-  left:0;
+.top-icons span {
+  cursor: pointer;
 }
 
-.overlay{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,0.4);
-  display:none;
-  z-index:10;
+/* ========== OVERLAY CLICK CLOSE ========== */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.2);
+  display: none;
+  z-index: 2000;
 }
 
-.overlay.active{
-  display:block;
-}
-
-/* HERO */
-
-.hero{
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  gap:0;
-  padding:170px 60px;
-  position:relative;
-}
-
-/* Bigger mascot */
-
-.hero img{
-  width:700px;
-  max-width:62vw;
-  animation:float 4s ease-in-out infinite;
-  filter:drop-shadow(0 0 60px rgba(183,116,164,0.4));
-  position:relative;
-  left:-50px;
-  z-index:3;
-}
-
-@keyframes float{
-  0%{transform:translateY(0px);}
-  50%{transform:translateY(-18px);}
-  100%{transform:translateY(0px);}
-}
-
-/* TEXT */
-
-.hero-text{
-  max-width:360px;
-  position:relative;
-  left:-180px;
-  z-index:2;
-}
-
-.hero-text h1{
-  font-size:30px;
-  letter-spacing:3px;
-}
-
-.hero-text p{
-  margin-top:25px;
-  font-size:14px;
-  line-height:1.7;
-  color:#555;
-}
-
-/* ROTATING TEXT */
-
-.feature-box{
-  margin-top:45px;
-  position:relative;
-  height:50px;
-}
-
-.feature-item{
-  position:absolute;
-  width:100%;
-  opacity:0;
-  transition:opacity 1s;
-  color:var(--pink);
-}
-
-.feature-item.active{
-  opacity:1;
-}
-
-/* MOBILE */
-
-@media(max-width:900px){
-  .hero{
-    flex-direction:column;
-    text-align:center;
-  }
-
-  .hero img{
-    width:380px;
-    left:0;
-  }
-
-  .hero-text{
-    left:0;
-  }
+.overlay.show {
+  display: block;
 }
 
 </style>
@@ -275,117 +189,60 @@ body{
 
 <body>
 
-<div class="stitch top"></div>
-<div class="stitch bottom"></div>
+<div class="hamburger" onclick="toggleMenu()">☰</div>
 
-<div class="peek-hamburger" onclick="openMenu()">☰</div>
-
-<div class="overlay" onclick="closeMenu()"></div>
-
-/* SIDEBAR BASE */
-.sidebar {
-  position: fixed;
-  top: 0;
-  left: -240px; /* hidden */
-  width: 240px;
-  height: 100vh;
-  background: #d8b4f0; /* paler purple */
-  padding-top: 120px;
-  transition: 0.4s ease;
-  z-index: 1000;
-}
-
-/* OPEN STATE */
-.sidebar.open {
-  left: 0;
-}
-
-/* PEEKING STRIP */
-.sidebar::before {
-  content: "";
-  position: absolute;
-  right: -35px; /* thinner peek */
-  top: 0;
-  width: 35px;
-  height: 100%;
-  background: #d8b4f0;
-  box-shadow: 4px 0 10px rgba(0,0,0,0.15);
-}
-
-/* LACE ON PEEKING EDGE */
-.sidebar-lace {
-  position: absolute;
-  right: -35px;
-  top: 0;
-  width: 35px;
-  height: 100%;
-
-  background-image: url("lace.png");
-  background-size: contain;
-  background-repeat: repeat-y;
-  background-position: center;
-  pointer-events: none;
-}
-  <a href="#">Skirts</a>
-  <a href="#">Dresses</a>
-  <a href="#">Tops</a>
-  <a href="#">Shorts</a>
-  <a href="#">Accessories</a>
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-lace"></div>
+  <nav>
+    <a href="#">Skirts</a>
+    <a href="#">Dresses</a>
+    <a href="#">Tops</a>
+    <a href="#">Shorts</a>
+    <a href="#">Accessories</a>
+  </nav>
 </div>
 
-<div class="topbar">
-  <div class="brand">gnawed</div>
+<div class="overlay" id="overlay" onclick="toggleMenu()"></div>
 
-  <div class="right-icons">
-    <div class="icon heart">♡</div>
-
-    <svg class="bag" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="1.8">
-      <path d="M6 8h12l-1 12H7L6 8z"/>
-      <path d="M9 8V6a3 3 0 016 0v2"/>
-    </svg>
-
-    <div class="icon">?</div>
+<header>
+  <div class="logo">gnawed</div>
+  <div class="top-icons">
+    <span>?</span>
+    <span>♡</span>
+    <span>🛍️</span>
   </div>
-</div>
+</header>
 
-<div class="hero">
+<section class="hero">
+  <h1>stitched softness for sweet chaos.</h1>
+  <img src="mascot2.png" class="mascot">
+</section>
 
-  <img src="mascot2.png" alt="Mascot">
-
-  <div class="hero-text">
-    <h1>soft gothic. hand altered.</h1>
-    <p>one of one pieces reconstructed with romantic ruin and stitched sentiment.</p>
-
-    <div class="feature-box">
-      <div class="feature-item active">lace skirts</div>
-      <div class="feature-item">reworked dresses</div>
-      <div class="feature-item">altered tops</div>
-      <div class="feature-item">patchwork accessories</div>
-    </div>
-  </div>
-
+<div class="product-box" id="productBox">
+  Skirts
 </div>
 
 <script>
 
-function openMenu(){
-  document.getElementById("sidebar").classList.add("active");
-  document.querySelector(".overlay").classList.add("active");
+/* Sidebar toggle */
+function toggleMenu() {
+  document.getElementById("sidebar").classList.toggle("open");
+  document.getElementById("overlay").classList.toggle("show");
 }
 
-function closeMenu(){
-  document.getElementById("sidebar").classList.remove("active");
-  document.querySelector(".overlay").classList.remove("active");
-}
+/* Fading product rotator */
+const items = ["Skirts", "Dresses", "Tops", "Shorts", "Accessories"];
+let index = 0;
+const box = document.getElementById("productBox");
 
-let items=document.querySelectorAll(".feature-item");
-let index=0;
-
-setInterval(()=>{
-  items[index].classList.remove("active");
-  index=(index+1)%items.length;
-  items[index].classList.add("active");
-},2500);
+setInterval(() => {
+  box.style.opacity = 0;
+  setTimeout(() => {
+    index = (index + 1) % items.length;
+    box.innerText = items[index];
+    box.style.opacity = 1;
+  }, 400);
+}, 2500);
 
 </script>
 
