@@ -9,130 +9,109 @@
 
 <style>
 
-/* ---------- BASE ---------- */
+/* -------- BASE -------- */
 
 body {
   margin: 0;
-  background: #f4efe9;
-  color: #1a1816;
+  background: #f6f2ee;
+  color: #111;
   font-family: 'Cormorant Garamond', serif;
   overflow-x: hidden;
 }
 
-/* stitched page edges */
-body::before,
-body::after {
+/* stitch border around entire page */
+body::before {
   content: "";
   position: fixed;
-  top: 0;
-  width: 20px;
-  height: 100%;
-  background-image: repeating-linear-gradient(
-    to bottom,
-    #1a1816 0px,
-    #1a1816 2px,
-    transparent 2px,
-    transparent 12px
-  );
-  opacity: 0.15;
+  inset: 15px;
+  border: 1px dashed rgba(0,0,0,0.25);
+  pointer-events: none;
 }
 
-body::before { left: 0; }
-body::after { right: 0; }
-
-a {
-  text-decoration: none;
-  color: #7a3e3e;
+/* subtle red accent lines */
+.accent-line {
+  height: 1px;
+  background: #7a1c1c;
+  width: 60px;
+  margin: 20px 0;
 }
 
-a:hover {
-  opacity: 0.7;
-}
-
-/* ---------- NAV ---------- */
+/* -------- NAV -------- */
 
 nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 30px 8%;
-  position: relative;
-  z-index: 10;
+  padding: 35px 10%;
 }
 
 .logo {
   font-family: 'Eater', cursive;
-  font-size: 2.2rem;
-  letter-spacing: 2px;
+  font-size: 2.3rem;
+  margin-left: 40px; /* moved slightly right */
 }
 
 .nav-links a {
-  margin-left: 30px;
-  font-size: 1rem;
+  margin-left: 35px;
+  text-transform: lowercase;
+  letter-spacing: 1px;
+  color: #7a1c1c;
 }
 
-/* ---------- HERO ---------- */
+.nav-links a:hover {
+  opacity: 0.6;
+}
+
+/* -------- HERO -------- */
 
 .hero {
-  padding: 120px 10%;
+  padding: 120px 12%;
   max-width: 800px;
 }
 
 .hero h1 {
   font-family: 'Eater', cursive;
-  font-size: 4.5rem;
+  font-size: 4.8rem;
   margin: 0;
 }
 
 .hero p {
   margin-top: 25px;
-  line-height: 1.8;
+  line-height: 1.9;
   max-width: 500px;
 }
 
-/* ---------- PRODUCTS ---------- */
+/* -------- SHOWCASE BOX -------- */
 
-.collection {
-  padding: 80px 8%;
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 50px;
-}
-
-.product {
+.showcase {
+  margin: 120px auto;
+  width: 400px;
+  height: 520px;
   position: relative;
   overflow: hidden;
+  border: 1px solid #111;
 }
 
-.product img {
-  width: 100%;
-  height: 420px;
-  object-fit: cover;
-  transition: 0.6s ease;
-  filter: contrast(105%);
-}
-
-.product-info {
+.showcase img {
   position: absolute;
-  bottom: 20px;
-  left: 20px;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   opacity: 0;
-  transition: 0.5s ease;
+  transition: opacity 1.2s ease;
 }
 
-.product:hover img {
-  transform: scale(1.05);
-  filter: brightness(80%);
-}
-
-.product:hover .product-info {
+.showcase img.active {
   opacity: 1;
 }
 
-/* ---------- SIDEBAR ---------- */
+.showcase-title {
+  text-align: center;
+  margin-top: 25px;
+  font-style: italic;
+}
+
+/* -------- SIDEBAR -------- */
 
 .sidebar-trigger {
   position: fixed;
@@ -140,26 +119,9 @@ nav {
   left: 0;
   width: 25px;
   height: 120px;
-  background: #1a1816;
+  background: #111;
   cursor: pointer;
   z-index: 20;
-}
-
-/* vertical stitching on trigger */
-.sidebar-trigger::after {
-  content: "";
-  position: absolute;
-  left: 10px;
-  top: 10px;
-  height: 100px;
-  width: 2px;
-  background-image: repeating-linear-gradient(
-    to bottom,
-    #f4efe9 0px,
-    #f4efe9 3px,
-    transparent 3px,
-    transparent 10px
-  );
 }
 
 .sidebar {
@@ -168,29 +130,11 @@ nav {
   left: -260px;
   width: 240px;
   height: 100%;
-  background: #1a1816;
-  color: #f4efe9;
+  background: #111;
+  color: #f6f2ee;
   padding: 120px 30px;
   transition: 0.4s ease;
   z-index: 25;
-}
-
-/* stitching along sidebar edge */
-.sidebar::before {
-  content: "";
-  position: absolute;
-  right: 5px;
-  top: 0;
-  width: 2px;
-  height: 100%;
-  background-image: repeating-linear-gradient(
-    to bottom,
-    #f4efe9 0px,
-    #f4efe9 3px,
-    transparent 3px,
-    transparent 12px
-  );
-  opacity: 0.5;
 }
 
 .sidebar.open {
@@ -205,15 +149,33 @@ nav {
 .sidebar a {
   display: block;
   margin-bottom: 20px;
-  color: #f4efe9;
+  color: #f6f2ee;
+  letter-spacing: 1px;
 }
 
-/* ---------- FOOTER ---------- */
+/* decorative stitches on sidebar */
+.sidebar::after {
+  content: "";
+  position: absolute;
+  right: 6px;
+  top: 0;
+  width: 2px;
+  height: 100%;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    #f6f2ee 0px,
+    #f6f2ee 3px,
+    transparent 3px,
+    transparent 12px
+  );
+}
+
+/* -------- FOOTER -------- */
 
 footer {
-  padding: 80px 8%;
-  font-size: 0.8rem;
+  padding: 100px 10%;
   text-align: center;
+  font-size: 0.8rem;
   opacity: 0.6;
 }
 
@@ -222,65 +184,14 @@ footer {
 
 <body>
 
-<div class="sidebar-trigger" onclick="openSidebar()"></div>
+<div class="sidebar-trigger" onclick="toggleSidebar()"></div>
 
 <div class="sidebar" id="sidebar">
   <h3>shop</h3>
   <a href="#">skirts</a>
   <a href="#">dresses</a>
   <a href="#">tops</a>
-  <a href="#">shorts</a>
   <a href="#">accessories</a>
 </div>
 
-<nav>
-  <div class="logo">gnawed</div>
-  <div class="nav-links">
-    <a href="about.html">about</a>
-    <a href="#">cart</a>
-  </div>
-</nav>
-
-<section class="hero">
-  <h1>gnawed</h1>
-  <p>
-    garments reworked softly by hand.
-    imperfect seams. quiet reconstruction.
-    made slowly, intentionally.
-  </p>
-</section>
-
-<section class="collection">
-  <div class="grid">
-
-    <div class="product">
-      <img src="https://via.placeholder.com/400x500">
-      <div class="product-info">
-        <h3>mourning slip dress</h3>
-        <div>$128</div>
-      </div>
-    </div>
-
-    <div class="product">
-      <img src="https://via.placeholder.com/400x500">
-      <div class="product-info">
-        <h3>bone ribbon skirt</h3>
-        <div>$94</div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<footer>
-  © 2026 gnawed — constructed quietly
-</footer>
-
-<script>
-function openSidebar() {
-  document.getElementById("sidebar").classList.toggle("open");
-}
-</script>
-
-</body>
-</html>
+<nav
