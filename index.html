@@ -9,50 +9,69 @@
 
 <style>
 
-/* ---------------- BASE ---------------- */
+/* ---------- BASE ---------- */
 
 body {
   margin: 0;
-  background: #1a171d;
-  background-image: radial-gradient(circle at top left, #2a1f2f 0%, #1a171d 60%);
-  color: #efe6f5;
+  background: #f4efe9;
+  color: #1a1816;
   font-family: 'Cormorant Garamond', serif;
   overflow-x: hidden;
 }
 
+/* stitched page edges */
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  width: 20px;
+  height: 100%;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    #1a1816 0px,
+    #1a1816 2px,
+    transparent 2px,
+    transparent 12px
+  );
+  opacity: 0.15;
+}
+
+body::before { left: 0; }
+body::after { right: 0; }
+
 a {
   text-decoration: none;
-  color: #d8b4ff;
-  transition: 0.3s ease;
+  color: #7a3e3e;
 }
 
 a:hover {
-  color: #ffffff;
+  opacity: 0.7;
 }
 
-/* ---------------- NAV ---------------- */
+/* ---------- NAV ---------- */
 
 nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 30px 8%;
+  position: relative;
+  z-index: 10;
 }
 
 .logo {
   font-family: 'Eater', cursive;
   font-size: 2.2rem;
   letter-spacing: 2px;
-  color: #f4ecff;
 }
 
 .nav-links a {
   margin-left: 30px;
   font-size: 1rem;
-  opacity: 0.85;
 }
 
-/* ---------------- HERO ---------------- */
+/* ---------- HERO ---------- */
 
 .hero {
   padding: 120px 10%;
@@ -63,17 +82,15 @@ nav {
   font-family: 'Eater', cursive;
   font-size: 4.5rem;
   margin: 0;
-  color: #f4ecff;
 }
 
 .hero p {
   margin-top: 25px;
-  opacity: 0.75;
   line-height: 1.8;
   max-width: 500px;
 }
 
-/* ---------------- SHOP GRID ---------------- */
+/* ---------- PRODUCTS ---------- */
 
 .collection {
   padding: 80px 8%;
@@ -88,15 +105,14 @@ nav {
 .product {
   position: relative;
   overflow: hidden;
-  cursor: pointer;
 }
 
 .product img {
   width: 100%;
-  height: 400px;
+  height: 420px;
   object-fit: cover;
   transition: 0.6s ease;
-  filter: brightness(85%) contrast(105%);
+  filter: contrast(105%);
 }
 
 .product-info {
@@ -104,41 +120,77 @@ nav {
   bottom: 20px;
   left: 20px;
   opacity: 0;
-  transition: 0.6s ease;
+  transition: 0.5s ease;
 }
 
 .product:hover img {
   transform: scale(1.05);
-  filter: brightness(65%);
+  filter: brightness(80%);
 }
 
 .product:hover .product-info {
   opacity: 1;
 }
 
-.product-info h3 {
-  margin: 0;
-  font-size: 1.2rem;
+/* ---------- SIDEBAR ---------- */
+
+.sidebar-trigger {
+  position: fixed;
+  top: 40%;
+  left: 0;
+  width: 25px;
+  height: 120px;
+  background: #1a1816;
+  cursor: pointer;
+  z-index: 20;
 }
 
-.price {
-  font-size: 0.9rem;
-  opacity: 0.7;
+/* vertical stitching on trigger */
+.sidebar-trigger::after {
+  content: "";
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  height: 100px;
+  width: 2px;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    #f4efe9 0px,
+    #f4efe9 3px,
+    transparent 3px,
+    transparent 10px
+  );
 }
-
-/* ---------------- LEFT SIDEBAR ---------------- */
 
 .sidebar {
   position: fixed;
   top: 0;
-  left: -280px;
-  width: 260px;
+  left: -260px;
+  width: 240px;
   height: 100%;
-  background: #231c26;
-  padding: 100px 30px;
+  background: #1a1816;
+  color: #f4efe9;
+  padding: 120px 30px;
   transition: 0.4s ease;
-  box-shadow: 5px 0 25px rgba(0,0,0,0.6);
-  z-index: 1000;
+  z-index: 25;
+}
+
+/* stitching along sidebar edge */
+.sidebar::before {
+  content: "";
+  position: absolute;
+  right: 5px;
+  top: 0;
+  width: 2px;
+  height: 100%;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    #f4efe9 0px,
+    #f4efe9 3px,
+    transparent 3px,
+    transparent 12px
+  );
+  opacity: 0.5;
 }
 
 .sidebar.open {
@@ -147,66 +199,22 @@ nav {
 
 .sidebar h3 {
   font-family: 'Eater', cursive;
-  font-size: 2rem;
   margin-bottom: 30px;
 }
 
 .sidebar a {
   display: block;
   margin-bottom: 20px;
-  opacity: 0.8;
+  color: #f4efe9;
 }
 
-/* ---------------- OVERLAY ---------------- */
-
-.overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.6);
-  opacity: 0;
-  pointer-events: none;
-  transition: 0.3s ease;
-}
-
-.overlay.active {
-  opacity: 1;
-  pointer-events: all;
-}
-
-/* ---------------- ABOUT PAGE ---------------- */
-
-.about-page {
-  padding: 120px 10%;
-  max-width: 700px;
-  display: none;
-}
-
-.about-page.active {
-  display: block;
-}
-
-.about-page h2 {
-  font-family: 'Eater', cursive;
-  font-size: 3rem;
-  margin-bottom: 20px;
-}
-
-.about-page p {
-  line-height: 1.9;
-  opacity: 0.85;
-  margin-bottom: 25px;
-}
-
-/* ---------------- FOOTER ---------------- */
+/* ---------- FOOTER ---------- */
 
 footer {
   padding: 80px 8%;
   font-size: 0.8rem;
-  opacity: 0.4;
   text-align: center;
+  opacity: 0.6;
 }
 
 </style>
@@ -214,16 +222,9 @@ footer {
 
 <body>
 
-<nav>
-  <div class="logo">gnawed</div>
-  <div class="nav-links">
-    <a href="#" onclick="openShop()">shop</a>
-    <a href="#" onclick="showAbout()">about</a>
-    <a href="#">cart</a>
-  </div>
-</nav>
+<div class="sidebar-trigger" onclick="openSidebar()"></div>
 
-<div class="sidebar" id="shopSidebar">
+<div class="sidebar" id="sidebar">
   <h3>shop</h3>
   <a href="#">skirts</a>
   <a href="#">dresses</a>
@@ -232,14 +233,20 @@ footer {
   <a href="#">accessories</a>
 </div>
 
-<div class="overlay" id="overlay" onclick="closeShop()"></div>
+<nav>
+  <div class="logo">gnawed</div>
+  <div class="nav-links">
+    <a href="about.html">about</a>
+    <a href="#">cart</a>
+  </div>
+</nav>
 
 <section class="hero">
   <h1>gnawed</h1>
   <p>
-    delicate garments, altered by hand.
-    softened at the seams.
-    distressed with intention.
+    garments reworked softly by hand.
+    imperfect seams. quiet reconstruction.
+    made slowly, intentionally.
   </p>
 </section>
 
@@ -249,48 +256,20 @@ footer {
     <div class="product">
       <img src="https://via.placeholder.com/400x500">
       <div class="product-info">
-        <h3>mourning lace dress</h3>
-        <div class="price">$128</div>
+        <h3>mourning slip dress</h3>
+        <div>$128</div>
       </div>
     </div>
 
     <div class="product">
       <img src="https://via.placeholder.com/400x500">
       <div class="product-info">
-        <h3>gnawed hem skirt</h3>
-        <div class="price">$94</div>
+        <h3>bone ribbon skirt</h3>
+        <div>$94</div>
       </div>
     </div>
 
   </div>
-</section>
-
-<section class="about-page" id="aboutPage">
-  <h2>about gnawed</h2>
-
-  <p>
-    gnawed is a one-person brand created and run by a high school student.
-    every garment is altered, reconstructed, and prepared by hand.
-  </p>
-
-  <p>
-    the brand began as a way to reclaim forgotten clothing —
-    to soften damage and turn it into something intentional.
-  </p>
-
-  <p>
-    a portion of profits are donated to
-    <a href="https://onetreeplanted.org" target="_blank">
-    One Tree Planted
-    </a>,
-    supporting global reforestation and environmental restoration.
-  </p>
-
-  <p>
-    nothing here is mass-produced.
-    nothing is perfect.
-    everything is made slowly.
-  </p>
 </section>
 
 <footer>
@@ -298,22 +277,9 @@ footer {
 </footer>
 
 <script>
-
-function openShop() {
-  document.getElementById("shopSidebar").classList.add("open");
-  document.getElementById("overlay").classList.add("active");
+function openSidebar() {
+  document.getElementById("sidebar").classList.toggle("open");
 }
-
-function closeShop() {
-  document.getElementById("shopSidebar").classList.remove("open");
-  document.getElementById("overlay").classList.remove("active");
-}
-
-function showAbout() {
-  document.getElementById("aboutPage").classList.toggle("active");
-  window.scrollTo({ top: document.getElementById("aboutPage").offsetTop - 50, behavior: 'smooth' });
-}
-
 </script>
 
 </body>
