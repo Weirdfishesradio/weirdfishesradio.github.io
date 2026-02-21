@@ -1,99 +1,105 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Reclaimed Ritual</title>
+    <title>Emily's Site</title>
+
     <style>
         body {
-            background-color: #111;
-            color: #e5e5e5;
+            margin: 0;
             font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
             text-align: center;
-            padding: 50px;
         }
 
-        h1 {
-            font-size: 3em;
-            letter-spacing: 2px;
+        header {
+            background-color: black;
+            color: white;
+            padding: 20px;
         }
 
-        p {
-            font-size: 1.2em;
-            max-width: 600px;
-            margin: 20px auto;
+        nav {
+            background-color: #222;
+            padding: 10px;
         }
 
-        .button {
-            display: inline-block;
-            padding: 12px 24px;
-            margin-top: 20px;
-            background-color: #333;
+        nav a {
             color: white;
             text-decoration: none;
-            border: 1px solid #666;
+            margin: 15px;
+            font-weight: bold;
         }
 
-        .button:hover {
-            background-color: #555;
+        nav a:hover {
+            color: lightgray;
         }
-    <style>
-    body {
-        margin: 0;
-        padding: 0;
-        background-color: #0b0b0f;
-        background-image: radial-gradient(circle at 30% 20%, rgba(60,60,80,0.4), transparent 60%),
-                          radial-gradient(circle at 80% 70%, rgba(80,60,90,0.3), transparent 60%);
-        color: #e8e6f0;
-        font-family: 'Courier New', monospace;
-        text-align: center;
-        padding: 80px 20px;
-    }
 
-    h1 {
-        font-size: 3.5em;
-        letter-spacing: 6px;
-        text-transform: uppercase;
-        color: #f2e9ff;
-        text-shadow: 0 0 8px rgba(180, 150, 255, 0.6);
-    }
+        section {
+            padding: 40px 20px;
+        }
 
-    p {
-        font-size: 1.2em;
-        max-width: 600px;
-        margin: 30px auto;
-        line-height: 1.8;
-        color: #cfcbe6;
-    }
+        .card {
+            background: white;
+            margin: 20px auto;
+            padding: 20px;
+            width: 80%;
+            max-width: 600px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
 
-    .button {
-        display: inline-block;
-        padding: 14px 30px;
-        margin-top: 40px;
-        background-color: transparent;
-        color: #f0eaff;
-        border: 1px solid #aa99ff;
-        text-decoration: none;
-        letter-spacing: 2px;
-        transition: all 0.3s ease;
-    }
+        footer {
+            background: black;
+            color: white;
+            padding: 15px;
+            margin-top: 40px;
+        }
 
-    .button:hover {
-        background-color: rgba(170,153,255,0.15);
-        box-shadow: 0 0 12px rgba(170,153,255,0.6);
-    }
+        button {
+            padding: 10px 20px;
+            background: black;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
 
-    strong {
-        color: #bbaaff;
-    }
-</style>
-<p><strong>Garments Diverted from Landfill: 27</strong></p>
-    <h1>RECLAIMED RITUAL</h1>
+        button:hover {
+            background: #444;
+        }
+    </style>
 
-    <p>
-        Diverting fashion from landfills.  
-        Sustainable resale. Grunge eco.
-    </p>
+</head>
 
-    <a href="#" class="button">Shop Coming Soon</a>
+<body>
+
+    <header>
+        <h1>Emily's Website</h1>
+        <p>Welcome to my page</p>
+    </header>
+
+    <nav>
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Projects</a>
+        <a href="#">Contact</a>
+    </nav>
+
+    <section>
+        <div class="card">
+            <h2>About Me</h2>
+            <p>This is where you can write something about yourself.</p>
+        </div>
+
+        <div class="card">
+            <h2>My Work</h2>
+            <p>Put your projects here.</p>
+            <button>Learn More</button>
+        </div>
+    </section>
+
+    <footer>
+        © 2026 Emily
+    </footer>
 
 </body>
 </html>
