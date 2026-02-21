@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>gnawed</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Cormorant+Garamond:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Eater&family=Cormorant+Garamond:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
 
@@ -13,17 +13,17 @@
 
 body {
   margin: 0;
-  background: #111013;
-  background-image: radial-gradient(circle at top, #1a151c 0%, #111013 60%);
-  color: #e6d9ec;
+  background: #1a171d;
+  background-image: radial-gradient(circle at top left, #2a1f2f 0%, #1a171d 60%);
+  color: #efe6f5;
   font-family: 'Cormorant Garamond', serif;
   overflow-x: hidden;
 }
 
 a {
   text-decoration: none;
-  color: #d8a8ff;
-  transition: 0.3s;
+  color: #d8b4ff;
+  transition: 0.3s ease;
 }
 
 a:hover {
@@ -36,19 +36,20 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 25px 8%;
-  font-size: 0.9rem;
-  letter-spacing: 1px;
+  padding: 30px 8%;
 }
 
 .logo {
-  font-family: 'Special Elite', cursive;
-  font-size: 1.6rem;
-  letter-spacing: 3px;
+  font-family: 'Eater', cursive;
+  font-size: 2.2rem;
+  letter-spacing: 2px;
+  color: #f4ecff;
 }
 
 .nav-links a {
-  margin-left: 25px;
+  margin-left: 30px;
+  font-size: 1rem;
+  opacity: 0.85;
 }
 
 /* ---------------- HERO ---------------- */
@@ -59,15 +60,17 @@ nav {
 }
 
 .hero h1 {
-  font-family: 'Special Elite', cursive;
-  font-size: 4rem;
+  font-family: 'Eater', cursive;
+  font-size: 4.5rem;
   margin: 0;
+  color: #f4ecff;
 }
 
 .hero p {
-  margin-top: 20px;
-  opacity: 0.7;
-  line-height: 1.7;
+  margin-top: 25px;
+  opacity: 0.75;
+  line-height: 1.8;
+  max-width: 500px;
 }
 
 /* ---------------- SHOP GRID ---------------- */
@@ -85,14 +88,15 @@ nav {
 .product {
   position: relative;
   overflow: hidden;
+  cursor: pointer;
 }
 
 .product img {
   width: 100%;
-  height: 380px;
+  height: 400px;
   object-fit: cover;
   transition: 0.6s ease;
-  filter: brightness(85%);
+  filter: brightness(85%) contrast(105%);
 }
 
 .product-info {
@@ -105,7 +109,7 @@ nav {
 
 .product:hover img {
   transform: scale(1.05);
-  filter: brightness(60%);
+  filter: brightness(65%);
 }
 
 .product:hover .product-info {
@@ -122,33 +126,54 @@ nav {
   opacity: 0.7;
 }
 
-/* ---------------- SIDEBAR ---------------- */
+/* ---------------- LEFT SIDEBAR ---------------- */
 
 .sidebar {
   position: fixed;
-  right: -250px;
   top: 0;
-  width: 250px;
+  left: -280px;
+  width: 260px;
   height: 100%;
-  background: #19161d;
-  padding: 80px 30px;
+  background: #231c26;
+  padding: 100px 30px;
   transition: 0.4s ease;
-  box-shadow: -5px 0 20px rgba(0,0,0,0.5);
+  box-shadow: 5px 0 25px rgba(0,0,0,0.6);
+  z-index: 1000;
 }
 
 .sidebar.open {
-  right: 0;
+  left: 0;
 }
 
 .sidebar h3 {
-  font-family: 'Special Elite', cursive;
-  margin-bottom: 20px;
+  font-family: 'Eater', cursive;
+  font-size: 2rem;
+  margin-bottom: 30px;
 }
 
 .sidebar a {
   display: block;
-  margin-bottom: 15px;
-  opacity: 0.7;
+  margin-bottom: 20px;
+  opacity: 0.8;
+}
+
+/* ---------------- OVERLAY ---------------- */
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.3s ease;
+}
+
+.overlay.active {
+  opacity: 1;
+  pointer-events: all;
 }
 
 /* ---------------- ABOUT PAGE ---------------- */
@@ -164,13 +189,15 @@ nav {
 }
 
 .about-page h2 {
-  font-family: 'Special Elite', cursive;
+  font-family: 'Eater', cursive;
+  font-size: 3rem;
+  margin-bottom: 20px;
 }
 
 .about-page p {
-  line-height: 1.8;
-  opacity: 0.8;
-  margin-top: 20px;
+  line-height: 1.9;
+  opacity: 0.85;
+  margin-bottom: 25px;
 }
 
 /* ---------------- FOOTER ---------------- */
@@ -179,18 +206,7 @@ footer {
   padding: 80px 8%;
   font-size: 0.8rem;
   opacity: 0.4;
-}
-
-/* ---------------- MASCOT DECOR ---------------- */
-
-.mascot {
-  position: fixed;
-  bottom: 20px;
-  left: 20px;
-  opacity: 0.08;
-  font-size: 6rem;
-  pointer-events: none;
-  font-family: 'Special Elite', cursive;
+  text-align: center;
 }
 
 </style>
@@ -201,18 +217,29 @@ footer {
 <nav>
   <div class="logo">gnawed</div>
   <div class="nav-links">
-    <a href="#" onclick="toggleShop()">shop</a>
+    <a href="#" onclick="openShop()">shop</a>
     <a href="#" onclick="showAbout()">about</a>
     <a href="#">cart</a>
   </div>
 </nav>
 
+<div class="sidebar" id="shopSidebar">
+  <h3>shop</h3>
+  <a href="#">skirts</a>
+  <a href="#">dresses</a>
+  <a href="#">tops</a>
+  <a href="#">shorts</a>
+  <a href="#">accessories</a>
+</div>
+
+<div class="overlay" id="overlay" onclick="closeShop()"></div>
+
 <section class="hero">
   <h1>gnawed</h1>
   <p>
-    delicate garments, bitten at the edges.
-    altered softly. stitched imperfectly.
-    made slowly by one person.
+    delicate garments, altered by hand.
+    softened at the seams.
+    distressed with intention.
   </p>
 </section>
 
@@ -238,43 +265,33 @@ footer {
   </div>
 </section>
 
-<div class="sidebar" id="shopSidebar">
-  <h3>collections</h3>
-  <a href="#">skirts</a>
-  <a href="#">dresses</a>
-  <a href="#">tops</a>
-  <a href="#">shorts</a>
-  <a href="#">accessories</a>
-</div>
-
 <section class="about-page" id="aboutPage">
   <h2>about gnawed</h2>
+
   <p>
     gnawed is a one-person brand created and run by a high school student.
-    every garment is altered, distressed, and prepared by hand.
+    every garment is altered, reconstructed, and prepared by hand.
   </p>
 
   <p>
-    this project began as a way to reclaim forgotten clothing —
-    to make something delicate out of damage.
+    the brand began as a way to reclaim forgotten clothing —
+    to soften damage and turn it into something intentional.
   </p>
 
   <p>
-    a portion of profits are donated to 
+    a portion of profits are donated to
     <a href="https://onetreeplanted.org" target="_blank">
     One Tree Planted
-    </a>, 
+    </a>,
     supporting global reforestation and environmental restoration.
   </p>
 
   <p>
     nothing here is mass-produced.
     nothing is perfect.
-    everything is intentional.
+    everything is made slowly.
   </p>
 </section>
-
-<div class="mascot">☾</div>
 
 <footer>
   © 2026 gnawed — constructed quietly
@@ -282,12 +299,19 @@ footer {
 
 <script>
 
-function toggleShop() {
-  document.getElementById("shopSidebar").classList.toggle("open");
+function openShop() {
+  document.getElementById("shopSidebar").classList.add("open");
+  document.getElementById("overlay").classList.add("active");
+}
+
+function closeShop() {
+  document.getElementById("shopSidebar").classList.remove("open");
+  document.getElementById("overlay").classList.remove("active");
 }
 
 function showAbout() {
   document.getElementById("aboutPage").classList.toggle("active");
+  window.scrollTo({ top: document.getElementById("aboutPage").offsetTop - 50, behavior: 'smooth' });
 }
 
 </script>
