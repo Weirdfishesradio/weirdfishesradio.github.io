@@ -3,310 +3,260 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>gnawed</title>
+<title>Reclaimed Ritual</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Eater&family=Cormorant+Garamond:wght@300;400;600&display=swap" rel="stylesheet">
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Eater&display=swap" rel="stylesheet">
 
 <style>
 
-/* ---------- BASE ---------- */
+/* ---------------- BASE ---------------- */
 
 body {
-  margin: 0;
-  background: #f5f1ec;
-  color: #111;
-  font-family: 'Cormorant Garamond', serif;
-  overflow-x: hidden;
+    margin: 0;
+    background: #0f0f0f;
+    color: #f5f5f5;
+    font-family: 'Eater', cursive;
+    overflow-x: hidden;
 }
 
-/* stitched frame */
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* subtle stitched page border */
 body::before {
-  content: "";
-  position: fixed;
-  inset: 18px;
-  border: 1px dashed rgba(0,0,0,0.25);
-  pointer-events: none;
+    content: "";
+    position: fixed;
+    inset: 8px;
+    border: 2px dashed #444;
+    pointer-events: none;
 }
 
-/* subtle grain overlay */
-body::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background-image: radial-gradient(rgba(0,0,0,0.03) 1px, transparent 1px);
-  background-size: 4px 4px;
-  pointer-events: none;
+/* ---------------- TOP BAR ---------------- */
+
+.topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 25px;
+    border-bottom: 1px solid #333;
+    position: relative;
 }
 
-/* ---------- NAV ---------- */
-
-nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 35px 10%;
-  position: relative;
-  z-index: 10;
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-left: 20px;
 }
 
-.logo {
-  font-family: 'Eater', cursive;
-  font-size: 2.4rem;
-  margin-left: 60px;
+.brand img {
+    width: 50px;
+    height: auto;
 }
 
-/* hamburger icon */
-
-.menu {
-  width: 28px;
-  cursor: pointer;
+.brand-name {
+    font-size: 28px;
+    letter-spacing: 2px;
 }
 
-.menu div {
-  height: 2px;
-  background: #111;
-  margin: 6px 0;
-  transition: 0.3s;
-}
-
-/* right side icons */
-
+/* icons */
 .icons {
-  display: flex;
-  gap: 25px;
-  font-size: 1.2rem;
+    display: flex;
+    gap: 20px;
+    font-size: 22px;
+    align-items: center;
 }
 
-.icons a {
-  color: #7a1c1c;
-  text-decoration: none;
-  transition: 0.3s;
+/* hamburger */
+.hamburger {
+    font-size: 26px;
+    cursor: pointer;
 }
 
-.icons a:hover {
-  transform: scale(1.2);
-}
-
-/* ---------- HERO ---------- */
-
-.hero {
-  padding: 130px 12%;
-  max-width: 800px;
-}
-
-.hero h1 {
-  font-family: 'Eater', cursive;
-  font-size: 5rem;
-  margin: 0;
-}
-
-.hero p {
-  margin-top: 25px;
-  line-height: 1.9;
-  max-width: 500px;
-}
-
-/* decorative red underline */
-.hero::after {
-  content: "";
-  display: block;
-  width: 80px;
-  height: 1px;
-  background: #7a1c1c;
-  margin-top: 25px;
-}
-
-/* ---------- SHOWCASE ---------- */
-
-.showcase {
-  margin: 120px auto;
-  width: 420px;
-  height: 540px;
-  position: relative;
-  overflow: hidden;
-  border: 1px solid #111;
-}
-
-.showcase img {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0;
-  transition: opacity 1.2s ease;
-}
-
-.showcase img.active {
-  opacity: 1;
-}
-
-/* ---------- SIDEBAR ---------- */
+/* ---------------- SIDEBAR ---------------- */
 
 .sidebar {
-  position: fixed;
-  top: 0;
-  left: -300px;
-  width: 260px;
-  height: 100%;
-  background: #111;
-  color: #f5f1ec;
-  padding: 120px 40px;
-  transition: 0.4s ease;
-  z-index: 30;
+    position: fixed;
+    left: -240px;
+    top: 0;
+    width: 240px;
+    height: 100%;
+    background: #161616;
+    padding-top: 80px;
+    transition: 0.4s;
+    border-right: 2px dashed #444;
+    z-index: 10;
 }
-
-.sidebar.open {
-  left: 0;
-}
-
-/* stitched edge on sidebar */
-.sidebar::after {
-  content: "";
-  position: absolute;
-  right: 8px;
-  top: 0;
-  width: 2px;
-  height: 100%;
-  background-image: repeating-linear-gradient(
-    to bottom,
-    #f5f1ec 0px,
-    #f5f1ec 3px,
-    transparent 3px,
-    transparent 12px
-  );
-}
-
-.sidebar h3 {
-  font-family: 'Eater', cursive;
-  margin-bottom: 40px;
-  font-size: 1.5rem;
-}
-
-/* stylized shop links */
 
 .sidebar a {
-  display: block;
-  margin-bottom: 25px;
-  font-size: 1.1rem;
-  letter-spacing: 2px;
-  text-transform: lowercase;
-  color: #f5f1ec;
-  position: relative;
-  transition: 0.3s;
-}
-
-.sidebar a::after {
-  content: "—";
-  position: absolute;
-  right: -15px;
-  opacity: 0;
-  transition: 0.3s;
+    display: block;
+    padding: 18px 25px;
+    border-bottom: 1px solid #222;
+    transition: 0.3s;
 }
 
 .sidebar a:hover {
-  letter-spacing: 4px;
+    background: #2a2a2a;
+    color: #d47d91;
 }
 
-.sidebar a:hover::after {
-  opacity: 1;
+.sidebar.active {
+    left: 0;
 }
 
-/* overlay when sidebar open */
-
+/* overlay */
 .overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.3);
-  opacity: 0;
-  pointer-events: none;
-  transition: 0.3s;
-  z-index: 20;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    display: none;
+    z-index: 5;
 }
 
-.overlay.show {
-  opacity: 1;
-  pointer-events: all;
+.overlay.active {
+    display: block;
 }
 
-/* ---------- FOOTER ---------- */
+/* ---------------- HERO ---------------- */
 
-footer {
-  padding: 100px 10%;
-  text-align: center;
-  font-size: 0.8rem;
-  opacity: 0.6;
+.hero {
+    text-align: center;
+    padding: 100px 20px 60px;
+    position: relative;
+}
+
+.hero h1 {
+    font-size: 38px;
+    margin-bottom: 10px;
+}
+
+.hero p {
+    font-size: 16px;
+    opacity: 0.7;
+}
+
+/* ---------------- FEATURE BOX ---------------- */
+
+.feature-box {
+    width: 260px;
+    margin: 60px auto;
+    padding: 30px;
+    border: 2px dashed #555;
+    background: #1a1a1a;
+    position: relative;
+    overflow: hidden;
+    min-height: 140px;
+}
+
+.feature-item {
+    position: absolute;
+    width: 100%;
+    opacity: 0;
+    transition: opacity 1s;
+}
+
+.feature-item.active {
+    opacity: 1;
+}
+
+/* ---------------- DECORATIVE ELEMENTS ---------------- */
+
+.corner-heart {
+    position: fixed;
+    bottom: 20px;
+    right: 25px;
+    font-size: 26px;
+    opacity: 0.5;
+}
+
+.scribble {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    border: 1px dashed #333;
+    transform: rotate(20deg);
+    top: 30%;
+    left: 10%;
+}
+
+/* ---------------- RESPONSIVE ---------------- */
+
+@media(max-width: 768px) {
+    .brand-name {
+        font-size: 20px;
+    }
 }
 
 </style>
 </head>
-
 <body>
 
-<div class="overlay" id="overlay" onclick="closeSidebar()"></div>
-
-<nav>
-  <div class="menu" onclick="toggleSidebar()">
-    <div></div>
-    <div></div>
-    <div></div>
-  </div>
-
-  <div class="logo">gnawed</div>
-
-  <div class="icons">
-    <a href="about.html">?</a>
-    <a href="#">♡</a>
-    <a href="#">👜</a>
-  </div>
-</nav>
+<div class="overlay" onclick="closeMenu()"></div>
 
 <div class="sidebar" id="sidebar">
-  <h3>archive</h3>
-  <a href="#">skirts</a>
-  <a href="#">dresses</a>
-  <a href="#">tops</a>
-  <a href="#">accessories</a>
+    <a href="#">Skirts</a>
+    <a href="#">Dresses</a>
+    <a href="#">Tops</a>
+    <a href="#">Shorts</a>
+    <a href="#">Accessories</a>
 </div>
 
-<section class="hero">
-  <h1>gnawed</h1>
-  <p>
-    reconstructed garments.
-    soft tension in every seam.
-    quiet silhouettes altered by hand.
-  </p>
-</section>
+<div class="topbar">
+    <div class="hamburger" onclick="openMenu()">☰</div>
 
-<div class="showcase">
-  <img src="https://via.placeholder.com/420x540?text=Slip+Dress" class="active">
-  <img src="https://via.placeholder.com/420x540?text=Ribbon+Skirt">
-  <img src="https://via.placeholder.com/420x540?text=Sheer+Blouse">
+    <div class="brand">
+        <img src="mascot.png" alt="Mascot">
+        <div class="brand-name">Reclaimed Ritual</div>
+    </div>
+
+    <div class="icons">
+        <span>♡</span>
+        <span>👜</span>
+        <a href="about.html">?</a>
+    </div>
 </div>
 
-<footer>
-  constructed slowly — 2026
-</footer>
+<div class="hero">
+    <h1>Soft gothic. Hand-altered. One-of-one.</h1>
+    <p>Romantic chaos stitched by hand.</p>
+</div>
+
+<div class="feature-box">
+    <div class="feature-item active">Layered lace skirts</div>
+    <div class="feature-item">Hand-altered dresses</div>
+    <div class="feature-item">Reworked statement tops</div>
+    <div class="feature-item">Patchwork accessories</div>
+</div>
+
+<div class="corner-heart">♥</div>
 
 <script>
 
-function toggleSidebar() {
-  document.getElementById("sidebar").classList.toggle("open");
-  document.getElementById("overlay").classList.toggle("show");
+/* SIDEBAR */
+
+function openMenu(){
+    document.getElementById("sidebar").classList.add("active");
+    document.querySelector(".overlay").classList.add("active");
 }
 
-function closeSidebar() {
-  document.getElementById("sidebar").classList.remove("open");
-  document.getElementById("overlay").classList.remove("show");
+function closeMenu(){
+    document.getElementById("sidebar").classList.remove("active");
+    document.querySelector(".overlay").classList.remove("active");
 }
 
-let slides = document.querySelectorAll(".showcase img");
+/* FEATURE FADE */
+
+let items = document.querySelectorAll(".feature-item");
 let index = 0;
 
 setInterval(() => {
-  slides[index].classList.remove("active");
-  index = (index + 1) % slides.length;
-  slides[index].classList.add("active");
-}, 4000);
+    items[index].classList.remove("active");
+    index = (index + 1) % items.length;
+    items[index].classList.add("active");
+}, 2500);
 
 </script>
 
