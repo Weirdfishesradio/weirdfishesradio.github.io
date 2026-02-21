@@ -3,92 +3,145 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Reclaimed Ritual</title>
+<title>gnawed</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
 
 body {
   margin: 0;
-  padding: 0;
-  background: radial-gradient(circle at top, #0a0a0a, #000000 70%);
-  color: #d8c7e6;
-  font-family: 'Cormorant Garamond', serif;
-  overflow-x: hidden;
+  background-color: #050505;
+  color: #e8e2f0;
+  font-family: 'Playfair Display', serif;
+  letter-spacing: 0.5px;
 }
 
-.wrapper {
-  padding: 120px 15%;
+nav {
+  display: flex;
+  justify-content: space-between;
+  padding: 30px 8%;
+  font-size: 0.9rem;
+  text-transform: lowercase;
+}
+
+nav a {
+  color: #e8e2f0;
+  text-decoration: none;
+  margin-left: 25px;
   position: relative;
 }
 
-h1 {
-  font-family: 'UnifrakturCook', cursive;
-  font-size: 4rem;
-  font-weight: normal;
-  color: #f2e9ff;
-  letter-spacing: 4px;
-  margin-bottom: 10px;
-}
-
-.subtitle {
-  font-size: 1.1rem;
-  opacity: 0.6;
-  letter-spacing: 3px;
-  margin-bottom: 80px;
-}
-
-.section {
-  margin-bottom: 120px;
-  max-width: 600px;
-}
-
-.section:nth-child(even) {
-  margin-left: auto;
-  text-align: right;
-}
-
-.section p {
-  font-size: 1.3rem;
-  line-height: 1.8;
-  opacity: 0.85;
-}
-
-.divider {
-  width: 60px;
+nav a::after {
+  content: "";
+  position: absolute;
+  width: 0%;
   height: 1px;
-  background: #6e4b8b;
-  margin: 40px 0;
-  opacity: 0.4;
-}
-
-a {
-  color: #c9a9ff;
-  text-decoration: none;
-  border-bottom: 1px solid rgba(201,169,255,0.4);
+  background: #e8e2f0;
+  bottom: -4px;
+  left: 0;
   transition: 0.4s;
 }
 
-a:hover {
-  color: white;
-  border-bottom: 1px solid white;
+nav a:hover::after {
+  width: 100%;
 }
 
-.dust {
-  position: fixed;
-  width: 2px;
-  height: 2px;
-  background: rgba(255,255,255,0.2);
-  border-radius: 50%;
-  animation: floatDust 12s linear infinite;
+.logo {
+  font-family: 'Cinzel', serif;
+  font-size: 1.5rem;
+  letter-spacing: 4px;
 }
 
-@keyframes floatDust {
-  from { transform: translateY(100vh); opacity: 0; }
-  20% { opacity: 0.5; }
-  80% { opacity: 0.5; }
-  to { transform: translateY(-10vh); opacity: 0; }
+.hero {
+  padding: 120px 10% 100px 10%;
+  max-width: 900px;
+}
+
+.hero h1 {
+  font-family: 'Cinzel', serif;
+  font-size: 4.5rem;
+  font-weight: 400;
+  margin: 0;
+  letter-spacing: 6px;
+}
+
+.hero p {
+  margin-top: 25px;
+  max-width: 500px;
+  font-size: 1.1rem;
+  opacity: 0.7;
+  line-height: 1.6;
+}
+
+.collection {
+  padding: 80px 8%;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 40px;
+}
+
+.product {
+  border: 1px solid rgba(255,255,255,0.08);
+  padding: 25px;
+  transition: 0.4s;
+  position: relative;
+}
+
+.product:hover {
+  border-color: rgba(255,255,255,0.4);
+}
+
+.product::before {
+  content: "✶";
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 0.8rem;
+  opacity: 0.3;
+}
+
+.product h3 {
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+  font-weight: 400;
+}
+
+.price {
+  opacity: 0.6;
+  font-size: 0.9rem;
+}
+
+.about {
+  padding: 120px 10%;
+  max-width: 600px;
+}
+
+.about h2 {
+  font-family: 'Cinzel', serif;
+  font-weight: 400;
+  letter-spacing: 3px;
+}
+
+.about p {
+  opacity: 0.7;
+  line-height: 1.7;
+  margin-top: 20px;
+}
+
+footer {
+  padding: 60px 8%;
+  font-size: 0.8rem;
+  opacity: 0.4;
+}
+
+.divider {
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(255,255,255,0.2), transparent);
+  margin: 60px 0;
 }
 
 </style>
@@ -96,48 +149,67 @@ a:hover {
 
 <body>
 
-<div class="wrapper">
-  <h1>The Reclaimed Ritual</h1>
-  <div class="subtitle">a quiet devotion to beautiful ruin</div>
-
-  <div class="section">
-    <p>
-      I am learning how to romanticize the wreckage.
-      To hold it gently. To not fear the unraveling.
-    </p>
-    <div class="divider"></div>
+<nav>
+  <div class="logo">gnawed</div>
+  <div>
+    <a href="#">shop</a>
+    <a href="#">archive</a>
+    <a href="#">about</a>
+    <a href="#">cart</a>
   </div>
+</nav>
 
-  <div class="section">
-    <p>
-      The ritual is not destruction —  
-      it is reclamation.  
-      A softer kind of rebellion.
-    </p>
-    <div class="divider"></div>
+<section class="hero">
+  <h1>gnawed</h1>
+  <p>
+    garments distressed with intention. delicate ruin.
+    soft silhouettes altered, bitten, reworked —
+    preserved from disappearance.
+  </p>
+</section>
+
+<div class="divider"></div>
+
+<section class="collection">
+  <div class="grid">
+
+    <div class="product">
+      <h3>stitched restraint top</h3>
+      <div class="price">$84</div>
+    </div>
+
+    <div class="product">
+      <h3>fractured lace dress</h3>
+      <div class="price">$132</div>
+    </div>
+
+    <div class="product">
+      <h3>gnawed hem skirt</h3>
+      <div class="price">$96</div>
+    </div>
+
+    <div class="product">
+      <h3>mourning ribbon corset</h3>
+      <div class="price">$118</div>
+    </div>
+
   </div>
+</section>
 
-  <div class="section">
-    <p>
-      Enter the archive when you are ready.  
-      <a href="#">step inside</a>
-    </p>
-  </div>
+<div class="divider"></div>
 
-</div>
+<section class="about">
+  <h2>philosophy</h2>
+  <p>
+    gnawed exists in the space between tenderness and decay.
+    each piece is reclaimed, altered, and slightly undone —
+    never perfect, always intentional.
+  </p>
+</section>
 
-<script>
-function createDust() {
-  const dust = document.createElement('div');
-  dust.classList.add('dust');
-  dust.style.left = Math.random() * window.innerWidth + 'px';
-  dust.style.animationDuration = (8 + Math.random()*8) + 's';
-  document.body.appendChild(dust);
-  setTimeout(() => dust.remove(), 16000);
-}
-setInterval(createDust, 300);
-</script>
+<footer>
+  © 2026 gnawed — constructed in shadow
+</footer>
 
 </body>
-</html>
 </html>
