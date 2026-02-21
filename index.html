@@ -1,105 +1,122 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Emily's Site</title>
+    <title>Reclaimed Ritual</title>
 
     <style>
         body {
             margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            font-family: 'Courier New', monospace;
+            background-color: #0e0e12;
+            color: #f1e8f5;
             text-align: center;
+            overflow-x: hidden;
+        }
+
+        /* subtle gradient glow background */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 30%, rgba(255, 170, 200, 0.15), transparent 60%),
+                        radial-gradient(circle at 80% 70%, rgba(150, 255, 150, 0.1), transparent 60%);
+            z-index: -1;
         }
 
         header {
-            background-color: black;
-            color: white;
-            padding: 20px;
+            padding: 80px 20px 40px 20px;
         }
 
-        nav {
-            background-color: #222;
-            padding: 10px;
+        h1 {
+            font-size: 3.5em;
+            letter-spacing: 6px;
+            color: #ffd6ea;
+            text-shadow: 0 0 15px rgba(255, 170, 200, 0.6);
         }
 
-        nav a {
-            color: white;
+        .tagline {
+            font-size: 1.2em;
+            color: #cfc4da;
+            margin-top: 20px;
+        }
+
+        .divider {
+            width: 200px;
+            height: 1px;
+            background: linear-gradient(to right, transparent, #888, transparent);
+            margin: 40px auto;
+        }
+
+        .counter {
+            font-size: 1.3em;
+            color: #a8f0b8;
+            text-shadow: 0 0 8px rgba(120,255,150,0.6);
+            margin-bottom: 30px;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 14px 28px;
+            border: 1px solid #ffb6d9;
+            color: #ffb6d9;
             text-decoration: none;
-            margin: 15px;
-            font-weight: bold;
+            letter-spacing: 2px;
+            transition: 0.3s ease;
         }
 
-        nav a:hover {
-            color: lightgray;
+        .button:hover {
+            background: rgba(255,182,217,0.15);
+            box-shadow: 0 0 20px rgba(255,182,217,0.6);
         }
 
-        section {
-            padding: 40px 20px;
-        }
-
-        .card {
-            background: white;
-            margin: 20px auto;
-            padding: 20px;
-            width: 80%;
+        .about {
             max-width: 600px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin: 80px auto;
+            line-height: 1.8;
+            color: #d8d0e2;
         }
 
         footer {
-            background: black;
-            color: white;
-            padding: 15px;
-            margin-top: 40px;
-        }
-
-        button {
-            padding: 10px 20px;
-            background: black;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background: #444;
+            margin-top: 80px;
+            padding: 20px;
+            font-size: 0.9em;
+            color: #777;
         }
     </style>
-
 </head>
 
 <body>
 
     <header>
-        <h1>Emily's Website</h1>
-        <p>Welcome to my page</p>
+        <h1>RECLAIMED RITUAL</h1>
+        <div class="tagline">
+            soft decay • sustainable resurrection • stitched survival
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="counter">
+            garments diverted from landfill: 27
+        </div>
+
+        <a href="#" class="button">enter the collection</a>
     </header>
 
-    <nav>
-        <a href="#">Home</a>
-        <a href="#">About</a>
-        <a href="#">Projects</a>
-        <a href="#">Contact</a>
-    </nav>
-
-    <section>
-        <div class="card">
-            <h2>About Me</h2>
-            <p>This is where you can write something about yourself.</p>
-        </div>
-
-        <div class="card">
-            <h2>My Work</h2>
-            <p>Put your projects here.</p>
-            <button>Learn More</button>
-        </div>
+    <section class="about">
+        This project reworks forgotten garments into something eerie,
+        soft, and intentional. Every piece saved is one less item
+        decomposing in a landfill. Sustainable fashion —
+        but make it haunted.
     </section>
 
     <footer>
-        © 2026 Emily
+        © 2026 Reclaimed Ritual
     </footer>
 
+</body>
+</html>
 </body>
 </html>
