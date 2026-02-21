@@ -1,342 +1,189 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>gnawed</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Eater&display=swap" rel="stylesheet">
-
-<style>
-body {
-  margin: 0;
-  background: #0a0a0a;
-  color: white;
-  font-family: 'Helvetica Neue', sans-serif;
-  overflow-x: hidden;
+:root{
+  --pink:#ff5c8d;
+  --black:#000;
+  --white:#fff;
 }
 
-/* HEADER */
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 25px 60px;
+body{
+  margin:0;
+  background:white;
+  font-family:'Eater', cursive;
+  overflow-x:hidden;
 }
 
-nav a {
-  margin: 0 20px;
-  text-decoration: none;
-  color: white;
-  font-size: 14px;
-  letter-spacing: 2px;
-  transition: opacity 0.3s ease;
+/* LACE BORDER EFFECT */
+body::before{
+  content:"✧ ✦ ✧ ✦ ✧ ✦ ✧ ✦ ✧ ✦ ✧ ✦ ✧ ✦ ✧ ✦";
+  position:fixed;
+  top:0;
+  width:100%;
+  text-align:center;
+  color:var(--pink);
+  font-size:14px;
 }
 
-nav a:hover {
-  opacity: 0.6;
+body::after{
+  content:"✧ ✦ ✧ ✦ ✧ ✦ ✧ ✦ ✧ ✦ ✧ ✦ ✧ ✦ ✧ ✦";
+  position:fixed;
+  bottom:0;
+  width:100%;
+  text-align:center;
+  color:var(--pink);
+  font-size:14px;
 }
 
-.cart {
-  cursor: pointer;
-  transition: transform 0.3s ease;
+/* TOP BAR */
+.topbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:25px 40px;
 }
 
-.cart:hover {
-  transform: scale(1.1);
+.brand{
+  font-size:30px;
+  letter-spacing:4px;
 }
 
-/* HERO SECTION */
-.hero {
-  text-align: center;
-  margin-top: 60px;
-  position: relative;
+.right-icons{
+  display:flex;
+  gap:25px;
+  align-items:center;
 }
 
-/* Bigger mascot */
-.mascot {
-  width: 420px;
-  animation: float 4s ease-in-out infinite;
-  filter: drop-shadow(0 0 25px rgba(255,0,0,0.25));
+.icon{
+  font-size:24px;
+  cursor:pointer;
 }
 
-/* Floating animation */
-@keyframes float {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-15px); }
-  100% { transform: translateY(0px); }
+.bag{
+  width:26px;
+  height:26px;
+  cursor:pointer;
 }
 
-h1 {
-  margin-top: 40px;
-  font-size: 48px;
-  letter-spacing: 6px;
-  font-weight: 300;
+/* SIDEBAR */
+.sidebar{
+  position:fixed;
+  top:0;
+  left:-300px;
+  width:300px;
+  height:100%;
+  background:black;
+  padding-top:100px;
+  transition:0.4s;
+  z-index:10;
 }
 
-/* Button */
-.shop-btn {
-  margin-top: 30px;
-  padding: 12px 40px;
-  background: transparent;
-  border: 1px solid white;
-  color: white;
-  letter-spacing: 3px;
-  cursor: pointer;
-  transition: all 0.3s ease;
+.sidebar a{
+  display:block;
+  color:white;
+  padding:22px 35px;
+  text-decoration:none;
+  font-size:20px;
+  letter-spacing:2px;
 }
 
-.shop-btn:hover {
-  background: white;
-  color: black;
+.sidebar a:hover{
+  background:rgba(255,92,141,0.2);
 }
 
-/* Decorative Line */
-.decor {
-  margin-top: 100px;
-  display: flex;
-  justify-content: center;
+.sidebar.active{
+  left:0;
 }
 
-.line {
-  width: 80%;
-  height: 1px;
-  background: linear-gradient(to right, transparent, white, transparent);
-}
-<body>
-
-<header>
-  <div class="logo">𖤐</div>
-
-  <nav>
-    <a href="#">Shop</a>
-    <a href="#">Archive</a>
-    <a href="#">Contact</a>
-  </nav>
-
-  <div class="cart">
-    <!-- Bag Outline SVG -->
-    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5">
-      <path d="M6 8h12l-1 12H7L6 8z"/>
-      <path d="M9 8V6a3 3 0 016 0v2"/>
-    </svg>
-  </div>
-</header>
-
-<section class="hero">
-  <img src="mascot.png" class="mascot">
-  <h1>NEW COLLECTION</h1>
-  <button class="shop-btn">ENTER</button>
-</section>
-
-<section class="decor">
-  <div class="line"></div>
-</section>
-
-</body>
-
-/* ---------------- TOP BAR ---------------- */
-
-.topbar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 18px 30px;
-    border-bottom: 2px dashed #b30000;
+.overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.4);
+  display:none;
+  z-index:5;
 }
 
-.hamburger {
-    font-size: 26px;
-    cursor: pointer;
+.overlay.active{
+  display:block;
 }
 
-.brand {
-    font-size: 30px;
-    letter-spacing: 3px;
-    margin-left: 20px;
+/* HERO — ASYMMETRICAL */
+.hero{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:60px;
+  padding:80px 40px;
+  position:relative;
 }
 
-.icons {
-    display: flex;
-    gap: 18px;
-    font-size: 22px;
+/* Mascot slightly left */
+.hero img{
+  width:380px;
+  animation:float 4s ease-in-out infinite;
+  filter:drop-shadow(0 0 25px rgba(255,92,141,0.4));
 }
 
-/* ---------------- SIDEBAR ---------------- */
-
-.sidebar {
-    position: fixed;
-    left: -220px;
-    top: 0;
-    width: 220px;
-    height: 100%;
-    background: white;
-    padding-top: 80px;
-    transition: 0.4s;
-    border-right: 2px dashed #b30000;
-    z-index: 10;
+/* Floating */
+@keyframes float{
+  0%{transform:translateY(0px);}
+  50%{transform:translateY(-15px);}
+  100%{transform:translateY(0px);}
 }
 
-.sidebar a {
-    display: block;
-    padding: 18px 25px;
-    border-bottom: 1px solid #eee;
-    color: #111;
+/* Gothic text block */
+.hero-text{
+  max-width:300px;
 }
 
-.sidebar a:hover {
-    background: #ffe6e6;
+.hero-text h1{
+  font-size:28px;
+  letter-spacing:3px;
 }
 
-.sidebar.active {
-    left: 0;
+.hero-text p{
+  margin-top:20px;
+  font-size:14px;
+  line-height:1.6;
+  color:#444;
 }
 
-.overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.2);
-    display: none;
-    z-index: 5;
+/* Rotating feature */
+.feature-box{
+  margin-top:40px;
+  position:relative;
+  height:50px;
 }
 
-.overlay.active {
-    display: block;
+.feature-item{
+  position:absolute;
+  width:100%;
+  opacity:0;
+  transition:opacity 1s;
+  color:var(--pink);
 }
 
-/* ---------------- HERO ---------------- */
-
-.hero {
-    text-align: center;
-    padding: 60px 20px 20px;
+.feature-item.active{
+  opacity:1;
 }
 
-/* BIG MASCOT */
-.hero img {
-    width: 280px;
-    max-width: 90%;
-    margin-bottom: 20px;
+/* Side lace vertical */
+.lace-vertical{
+  position:fixed;
+  left:10px;
+  top:0;
+  height:100%;
+  writing-mode:vertical-rl;
+  text-orientation:upright;
+  color:var(--pink);
+  font-size:12px;
+  opacity:0.6;
 }
 
-/* tagline */
-.tagline {
-    font-size: 20px;
-    color: #b30000;
-    margin-bottom: 40px;
-}
-
-/* rotating feature box */
-
-.feature-box {
-    width: 260px;
-    margin: 0 auto 60px;
-    padding: 25px;
-    border: 2px dashed #b30000;
-    background: white;
-    position: relative;
-    min-height: 120px;
-}
-
-.feature-item {
-    position: absolute;
-    width: 100%;
-    opacity: 0;
-    transition: opacity 1s;
-}
-
-.feature-item.active {
-    opacity: 1;
-}
-
-/* decorative red scribble lines */
-
-.scribble-left {
-    position: absolute;
-    left: 20px;
-    top: 40%;
-    width: 60px;
-    height: 60px;
-    border: 1px dashed #b30000;
-    transform: rotate(25deg);
-}
-
-.scribble-right {
-    position: absolute;
-    right: 20px;
-    top: 60%;
-    width: 60px;
-    height: 60px;
-    border: 1px dashed #b30000;
-    transform: rotate(-25deg);
-}
-
+/* Mobile */
 @media(max-width:768px){
-    .brand{
-        font-size:22px;
-    }
+  .hero{
+    flex-direction:column;
+    text-align:center;
+  }
+  .hero img{
+    width:260px;
+  }
 }
-
-</style>
-</head>
-<body>
-
-<div class="overlay" onclick="closeMenu()"></div>
-
-<div class="sidebar" id="sidebar">
-    <a href="#">Skirts</a>
-    <a href="#">Dresses</a>
-    <a href="#">Tops</a>
-    <a href="#">Shorts</a>
-    <a href="#">Accessories</a>
-</div>
-
-<div class="topbar">
-    <div class="hamburger" onclick="openMenu()">☰</div>
-    <div class="brand">gnawed</div>
-    <div class="icons">
-        <span>♡</span>
-        <span>👜</span>
-        <span>?</span>
-    </div>
-</div>
-
-<div class="hero">
-    <img src="mascot.png" alt="Mascot">
-    <div class="tagline">soft gothic. hand altered. one of one.</div>
-</div>
-
-<div class="feature-box">
-    <div class="feature-item active">lace skirts</div>
-    <div class="feature-item">reworked dresses</div>
-    <div class="feature-item">altered tops</div>
-    <div class="feature-item">patchwork accessories</div>
-</div>
-
-<div class="scribble-left"></div>
-<div class="scribble-right"></div>
-
-<script>
-
-function openMenu(){
-    document.getElementById("sidebar").classList.add("active");
-    document.querySelector(".overlay").classList.add("active");
-}
-
-function closeMenu(){
-    document.getElementById("sidebar").classList.remove("active");
-    document.querySelector(".overlay").classList.remove("active");
-}
-
-let items = document.querySelectorAll(".feature-item");
-let index = 0;
-
-setInterval(() => {
-    items[index].classList.remove("active");
-    index = (index + 1) % items.length;
-    items[index].classList.add("active");
-}, 2500);
-
-</script>
-
-</body>
-</html>
