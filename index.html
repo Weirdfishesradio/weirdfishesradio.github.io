@@ -1,19 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>gnawed</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Eater&display=swap" rel="stylesheet">
+
+<style>
+
 :root{
   --pink:#ff5c8d;
   --black:#000;
   --white:#fff;
 }
 
+/* BASE */
+
 body{
   margin:0;
   background:white;
   font-family:'Eater', cursive;
   overflow-x:hidden;
+  color:black;
 }
 
-/* LACE BORDER EFFECT */
+/* Lace top & bottom */
+
 body::before{
-  content:"✧ ✦ ✧ ✦ ✧ ✦ ✧ ✦ ✧ ✦ ✧ ✦ ✧ ✦ ✧ ✦";
+  content:"✧ ✦ ✧ ✦ ✧ ✦ ✧ ✦ ✧ ✦ ✧ ✦ ✧ ✦ ✧ ✦ ✧ ✦";
   position:fixed;
   top:0;
   width:100%;
@@ -23,7 +37,7 @@ body::before{
 }
 
 body::after{
-  content:"✧ ✦ ✧ ✦ ✧ ✦ ✧ ✦ ✧ ✦ ✧ ✦ ✧ ✦ ✧ ✦";
+  content:"✧ ✦ ✧ ✦ ✧ ✦ ✧ ✦ ✧ ✦ ✧ ✦ ✧ ✦ ✧ ✦ ✧ ✦";
   position:fixed;
   bottom:0;
   width:100%;
@@ -33,11 +47,12 @@ body::after{
 }
 
 /* TOP BAR */
+
 .topbar{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  padding:25px 40px;
+  padding:30px 40px;
 }
 
 .brand{
@@ -56,6 +71,12 @@ body::after{
   cursor:pointer;
 }
 
+.heart{
+  color:var(--pink);
+}
+
+/* Custom bag */
+
 .bag{
   width:26px;
   height:26px;
@@ -63,14 +84,15 @@ body::after{
 }
 
 /* SIDEBAR */
+
 .sidebar{
   position:fixed;
   top:0;
-  left:-300px;
-  width:300px;
+  left:-320px;
+  width:320px;
   height:100%;
   background:black;
-  padding-top:100px;
+  padding-top:110px;
   transition:0.4s;
   z-index:10;
 }
@@ -78,7 +100,7 @@ body::after{
 .sidebar a{
   display:block;
   color:white;
-  padding:22px 35px;
+  padding:22px 40px;
   text-decoration:none;
   font-size:20px;
   letter-spacing:2px;
@@ -104,33 +126,52 @@ body::after{
   display:block;
 }
 
-/* HERO — ASYMMETRICAL */
+/* HERO LAYOUT */
+
 .hero{
   display:flex;
   justify-content:center;
   align-items:center;
-  gap:60px;
-  padding:80px 40px;
+  gap:80px;
+  padding:100px 60px;
   position:relative;
 }
 
-/* Mascot slightly left */
+/* Vertical lace detail */
+
+.lace-vertical{
+  position:fixed;
+  left:15px;
+  top:0;
+  height:100%;
+  writing-mode:vertical-rl;
+  text-orientation:upright;
+  color:var(--pink);
+  font-size:12px;
+  opacity:0.5;
+}
+
+/* Mascot */
+
 .hero img{
-  width:380px;
+  width:420px;
+  max-width:45vw;
   animation:float 4s ease-in-out infinite;
-  filter:drop-shadow(0 0 25px rgba(255,92,141,0.4));
+  filter:drop-shadow(0 0 30px rgba(255,92,141,0.4));
 }
 
 /* Floating */
+
 @keyframes float{
   0%{transform:translateY(0px);}
   50%{transform:translateY(-15px);}
   100%{transform:translateY(0px);}
 }
 
-/* Gothic text block */
+/* Text block */
+
 .hero-text{
-  max-width:300px;
+  max-width:320px;
 }
 
 .hero-text h1{
@@ -139,13 +180,14 @@ body::after{
 }
 
 .hero-text p{
-  margin-top:20px;
+  margin-top:25px;
   font-size:14px;
-  line-height:1.6;
+  line-height:1.7;
   color:#444;
 }
 
 /* Rotating feature */
+
 .feature-box{
   margin-top:40px;
   position:relative;
@@ -164,26 +206,100 @@ body::after{
   opacity:1;
 }
 
-/* Side lace vertical */
-.lace-vertical{
-  position:fixed;
-  left:10px;
-  top:0;
-  height:100%;
-  writing-mode:vertical-rl;
-  text-orientation:upright;
-  color:var(--pink);
-  font-size:12px;
-  opacity:0.6;
-}
-
 /* Mobile */
-@media(max-width:768px){
+
+@media(max-width:900px){
   .hero{
     flex-direction:column;
     text-align:center;
+    gap:40px;
   }
+
   .hero img{
-    width:260px;
+    width:280px;
+  }
+
+  .lace-vertical{
+    display:none;
   }
 }
+
+</style>
+</head>
+
+<body>
+
+<div class="overlay" onclick="closeMenu()"></div>
+
+<div class="sidebar" id="sidebar">
+  <a href="#">Skirts</a>
+  <a href="#">Dresses</a>
+  <a href="#">Tops</a>
+  <a href="#">Shorts</a>
+  <a href="#">Accessories</a>
+</div>
+
+<div class="topbar">
+  <div class="brand">gnawed</div>
+
+  <div class="right-icons">
+    <div class="icon" onclick="openMenu()">☰</div>
+    <div class="icon heart">♡</div>
+
+    <!-- Outline bag -->
+    <svg class="bag" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="1.8">
+      <path d="M6 8h12l-1 12H7L6 8z"/>
+      <path d="M9 8V6a3 3 0 016 0v2"/>
+    </svg>
+
+    <a href="about.html" class="icon">?</a>
+  </div>
+</div>
+
+<div class="hero">
+
+  <img src="mascot.png" alt="Mascot">
+
+  <div class="hero-text">
+    <h1>soft gothic. hand altered.</h1>
+    <p>one of one pieces reconstructed with romantic ruin and stitched sentiment.</p>
+
+    <div class="feature-box">
+      <div class="feature-item active">lace skirts</div>
+      <div class="feature-item">reworked dresses</div>
+      <div class="feature-item">altered tops</div>
+      <div class="feature-item">patchwork accessories</div>
+    </div>
+  </div>
+
+</div>
+
+<div class="lace-vertical">
+✧ ✦ ✧ ✦ ✧ ✦ ✧ ✦ ✧ ✦ ✧ ✦ ✧ ✦ ✧ ✦
+</div>
+
+<script>
+
+function openMenu(){
+  document.getElementById("sidebar").classList.add("active");
+  document.querySelector(".overlay").classList.add("active");
+}
+
+function closeMenu(){
+  document.getElementById("sidebar").classList.remove("active");
+  document.querySelector(".overlay").classList.remove("active");
+}
+
+let items=document.querySelectorAll(".feature-item");
+let index=0;
+
+setInterval(()=>{
+  items[index].classList.remove("active");
+  index=(index+1)%items.length;
+  items[index].classList.add("active");
+},2500);
+
+</script>
+
+</body>
+</html>
