@@ -1,129 +1,92 @@
-
 <!DOCTYPE html>
-
 <html>
-
 <head>
-
 <title>about — gnawed</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Eater&family=Cormorant+Garamond:wght@300;400;600&display=swap" rel="stylesheet">
 
-
-
 <style>
 
 body {
-
   margin: 0;
-
-  background: #f4efe9;
-
-  color: #1a1816;
-
+  background: #f6f2ee;
+  color: #111;
   font-family: 'Cormorant Garamond', serif;
-
   padding: 120px 15%;
-
+  position: relative;
 }
 
-
+/* stitched frame */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 15px;
+  border: 1px dashed rgba(0,0,0,0.25);
+  pointer-events: none;
+}
 
 h1 {
-
   font-family: 'Eater', cursive;
-
-  font-size: 3rem;
-
+  font-size: 3.5rem;
 }
 
-
-
-p {
-
+.section {
+  margin-top: 60px;
+  max-width: 650px;
   line-height: 1.9;
-
-  max-width: 600px;
-
 }
 
-
+.divider {
+  width: 80px;
+  height: 1px;
+  background: #7a1c1c;
+  margin: 30px 0;
+}
 
 a {
+  color: #7a1c1c;
+}
 
-  color: #7a3e3e;
-
+.back {
+  margin-top: 80px;
+  font-style: italic;
 }
 
 </style>
-
 </head>
-
-
 
 <body>
 
-
-
 <h1>about gnawed</h1>
 
+<div class="divider"></div>
 
+<div class="section">
+gnawed began as an experiment in reconstruction —
+taking garments already lived in and reshaping them into
+something intentional.
+</div>
 
-<p>
+<div class="section">
+each piece is altered by hand.
+no factory lines. no repetition.
+only quiet revisions and slow stitching.
+</div>
 
-gnawed is a one-person brand created and run by a high school student.
-
-every piece is altered and reconstructed by hand.
-
-</p>
-
-
-
-<p>
-
-this project began as a way to transform forgotten clothing into something
-
-intentional and quietly beautiful.
-
-</p>
-
-
-
-<p>
-
-a portion of profits are donated to
-
-<a href="https://onetreeplanted.org" target="_blank">
-
-One Tree Planted
-
-</a>,
-
+<div class="section">
+a portion of proceeds are donated to
+<a href="https://onetreeplanted.org" target="_blank">One Tree Planted</a>,
 supporting global reforestation efforts.
+</div>
 
-</p>
+<div class="section">
+this brand exists somewhere between softness and ruin.
+between delicacy and structure.
+</div>
 
-
-
-<p>
-
-nothing here is mass produced.
-
-everything is made slowly.
-
-</p>
-
-
-
-<p>
-
+<div class="back">
 <a href="index.html">← return home</a>
-
-</p>
-
-
+</div>
 
 </body>
-
 </html>
-
