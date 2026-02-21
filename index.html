@@ -5,114 +5,90 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Reclaimed Ritual</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
 
 <style>
 
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Orbitron', sans-serif;
-  background: linear-gradient(-45deg, #0a0a0f, #1a0d1f, #130015, #0f001f);
-  background-size: 400% 400%;
-  animation: gradientMove 15s ease infinite;
-  color: #e6ccff;
+  background: radial-gradient(circle at top, #0a0a0a, #000000 70%);
+  color: #d8c7e6;
+  font-family: 'Cormorant Garamond', serif;
   overflow-x: hidden;
-  cursor: crosshair;
 }
 
-@keyframes gradientMove {
-  0% {background-position: 0% 50%;}
-  50% {background-position: 100% 50%;}
-  100% {background-position: 0% 50%;}
-}
-
-.container {
-  text-align: center;
-  padding: 100px 20px;
+.wrapper {
+  padding: 120px 15%;
   position: relative;
 }
 
 h1 {
-  font-family: 'Cinzel', serif;
-  font-size: 3.5rem;
-  letter-spacing: 6px;
-  text-shadow: 0 0 10px #c77dff, 0 0 30px #7209b7;
-  animation: glitch 2s infinite;
-}
-
-@keyframes glitch {
-  0% { text-shadow: 2px 0 #ff00ff, -2px 0 #00ffff; }
-  50% { text-shadow: -2px 0 #ff00ff, 2px 0 #00ffff; }
-  100% { text-shadow: 2px 0 #ff00ff, -2px 0 #00ffff; }
+  font-family: 'UnifrakturCook', cursive;
+  font-size: 4rem;
+  font-weight: normal;
+  color: #f2e9ff;
+  letter-spacing: 4px;
+  margin-bottom: 10px;
 }
 
 .subtitle {
-  font-size: 1.2rem;
-  opacity: 0.7;
-  margin-bottom: 50px;
-  letter-spacing: 2px;
+  font-size: 1.1rem;
+  opacity: 0.6;
+  letter-spacing: 3px;
+  margin-bottom: 80px;
 }
 
-.glass-card {
-  background: rgba(255,255,255,0.05);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255,255,255,0.1);
-  padding: 30px;
-  border-radius: 20px;
-  width: 300px;
-  margin: 20px auto;
-  box-shadow: 0 0 20px rgba(199,125,255,0.3);
-  transition: 0.4s ease;
+.section {
+  margin-bottom: 120px;
+  max-width: 600px;
 }
 
-.glass-card:hover {
-  transform: scale(1.05) rotate(-1deg);
-  box-shadow: 0 0 40px rgba(255,0,255,0.6);
+.section:nth-child(even) {
+  margin-left: auto;
+  text-align: right;
 }
 
-button {
-  margin-top: 20px;
-  padding: 12px 30px;
-  background: linear-gradient(90deg, #7209b7, #ff00ff);
-  border: none;
-  border-radius: 30px;
+.section p {
+  font-size: 1.3rem;
+  line-height: 1.8;
+  opacity: 0.85;
+}
+
+.divider {
+  width: 60px;
+  height: 1px;
+  background: #6e4b8b;
+  margin: 40px 0;
+  opacity: 0.4;
+}
+
+a {
+  color: #c9a9ff;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(201,169,255,0.4);
+  transition: 0.4s;
+}
+
+a:hover {
   color: white;
-  font-weight: bold;
-  letter-spacing: 2px;
-  cursor: pointer;
-  transition: 0.3s;
+  border-bottom: 1px solid white;
 }
 
-button:hover {
-  transform: scale(1.1);
-  box-shadow: 0 0 20px #ff00ff;
-}
-
-.floating {
-  position: absolute;
-  font-size: 20px;
-  opacity: 0.2;
-  animation: float 10s infinite linear;
-}
-
-@keyframes float {
-  from { transform: translateY(100vh); }
-  to { transform: translateY(-100vh); }
-}
-
-.sparkle {
+.dust {
   position: fixed;
-  width: 3px;
-  height: 3px;
-  background: #fff;
+  width: 2px;
+  height: 2px;
+  background: rgba(255,255,255,0.2);
   border-radius: 50%;
-  animation: sparkleMove 5s linear infinite;
+  animation: floatDust 12s linear infinite;
 }
 
-@keyframes sparkleMove {
-  from { transform: translateY(0); opacity: 1;}
-  to { transform: translateY(-100vh); opacity: 0;}
+@keyframes floatDust {
+  from { transform: translateY(100vh); opacity: 0; }
+  20% { opacity: 0.5; }
+  80% { opacity: 0.5; }
+  to { transform: translateY(-10vh); opacity: 0; }
 }
 
 </style>
@@ -120,40 +96,48 @@ button:hover {
 
 <body>
 
-<div class="container">
-  <h1>THE RECLAIMED RITUAL</h1>
-  <div class="subtitle">soft machinery • sacred distortion • digital devotion</div>
+<div class="wrapper">
+  <h1>The Reclaimed Ritual</h1>
+  <div class="subtitle">a quiet devotion to beautiful ruin</div>
 
-  <div class="glass-card">
-    <p>enter the archive of unraveling threads</p>
-    <button>Enter</button>
+  <div class="section">
+    <p>
+      I am learning how to romanticize the wreckage.
+      To hold it gently. To not fear the unraveling.
+    </p>
+    <div class="divider"></div>
   </div>
 
-  <div class="glass-card">
-    <p>fragments of a forgotten signal</p>
-    <button>Decode</button>
+  <div class="section">
+    <p>
+      The ritual is not destruction —  
+      it is reclamation.  
+      A softer kind of rebellion.
+    </p>
+    <div class="divider"></div>
+  </div>
+
+  <div class="section">
+    <p>
+      Enter the archive when you are ready.  
+      <a href="#">step inside</a>
+    </p>
   </div>
 
 </div>
 
-<div class="floating" style="left:10%; animation-duration:12s;">✦</div>
-<div class="floating" style="left:30%; animation-duration:15s;">☾</div>
-<div class="floating" style="left:50%; animation-duration:18s;">⛧</div>
-<div class="floating" style="left:70%; animation-duration:20s;">✧</div>
-<div class="floating" style="left:90%; animation-duration:17s;">☽</div>
-
 <script>
-function createSparkle() {
-  const sparkle = document.createElement('div');
-  sparkle.classList.add('sparkle');
-  sparkle.style.left = Math.random() * window.innerWidth + 'px';
-  sparkle.style.top = window.innerHeight + 'px';
-  document.body.appendChild(sparkle);
-  setTimeout(() => sparkle.remove(), 5000);
+function createDust() {
+  const dust = document.createElement('div');
+  dust.classList.add('dust');
+  dust.style.left = Math.random() * window.innerWidth + 'px';
+  dust.style.animationDuration = (8 + Math.random()*8) + 's';
+  document.body.appendChild(dust);
+  setTimeout(() => dust.remove(), 16000);
 }
-
-setInterval(createSparkle, 200);
+setInterval(createDust, 300);
 </script>
 
 </body>
+</html>
 </html>
