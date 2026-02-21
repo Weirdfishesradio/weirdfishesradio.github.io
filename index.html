@@ -9,35 +9,46 @@
 <style>
 
 :root{
-  --pink:#a14e8a; /* muted purple pink */
-  --light:#fbf2f8;
+  --pink:#b774a4;   /* paler muted purple */
+  --light:#fcf4fa;
 }
 
 body{
   margin:0;
   font-family:'Eater', cursive;
   background:var(--light);
-  background-image: radial-gradient(#e8c6dc 1px, transparent 1px);
+  background-image: radial-gradient(#efd9ea 1px, transparent 1px);
   background-size:22px 22px;
   overflow-x:hidden;
   color:black;
 }
 
-/* STITCH TOP + BOTTOM */
+/* REAL STITCHING TOP + BOTTOM */
 
 .stitch{
   position:fixed;
   left:0;
   width:100%;
-  height:14px;
+  height:22px;
   z-index:2;
-  background:repeating-linear-gradient(
-    90deg,
-    var(--pink),
-    var(--pink) 8px,
-    transparent 8px,
-    transparent 16px
-  );
+  background:
+    repeating-linear-gradient(
+      90deg,
+      transparent 0 12px,
+      var(--pink) 12px 14px,
+      transparent 14px 26px
+    );
+}
+
+.stitch::before{
+  content:"";
+  position:absolute;
+  top:50%;
+  left:0;
+  width:100%;
+  height:2px;
+  background:var(--pink);
+  transform:translateY(-50%);
 }
 
 .stitch.top{ top:0; }
@@ -90,8 +101,8 @@ body{
 .sidebar{
   position:fixed;
   top:0;
-  left:-200px; /* adjusted */
-  width:240px; /* thinner */
+  left:-185px; /* thinner peek */
+  width:220px;
   height:100%;
   background:var(--pink);
   padding-top:120px;
@@ -104,30 +115,47 @@ body{
 .sidebar::after{
   content:"";
   position:absolute;
-  right:-20px;
+  right:-14px;
   top:0;
-  width:20px;
+  width:14px;
   height:100%;
   background:var(--pink);
 }
 
-/* lace only on peek strip */
+/* VERTICAL FLORAL LACE EDGE */
 .sidebar::before{
   content:"";
   position:absolute;
-  right:-20px;
+  right:-14px;
   top:0;
-  width:20px;
+  width:14px;
   height:100%;
   background:
-    radial-gradient(circle at 50% 0%, white 60%, transparent 61%) 0 0/20px 20px repeat-y;
-  opacity:0.6;
+    radial-gradient(circle at 50% 8px, white 5px, transparent 6px),
+    radial-gradient(circle at 50% 24px, white 5px, transparent 6px);
+  background-size:14px 32px;
+  background-repeat:repeat-y;
+  opacity:0.85;
 }
+
+/* Hamburger on peek strip */
+
+.peek-hamburger{
+  position:fixed;
+  left:6px;
+  top:40px;
+  font-size:26px;
+  color:white;
+  z-index:20;
+  cursor:pointer;
+}
+
+/* Sidebar links */
 
 .sidebar a{
   display:block;
   color:white;
-  padding:24px 40px;
+  padding:24px 35px;
   text-decoration:none;
   font-size:20px;
   letter-spacing:2px;
@@ -136,7 +164,6 @@ body{
 
 .sidebar a:hover{
   background:rgba(255,255,255,0.2);
-  text-shadow:0 0 8px rgba(255,255,255,0.8);
 }
 
 .sidebar.active{
@@ -162,19 +189,19 @@ body{
   justify-content:center;
   align-items:center;
   gap:0;
-  padding:160px 60px;
+  padding:170px 60px;
   position:relative;
 }
 
-/* MASCOT BIGGER + OVERLAP */
+/* Bigger mascot */
 
 .hero img{
-  width:650px;
-  max-width:60vw;
+  width:700px;
+  max-width:62vw;
   animation:float 4s ease-in-out infinite;
-  filter:drop-shadow(0 0 50px rgba(161,78,138,0.4));
+  filter:drop-shadow(0 0 60px rgba(183,116,164,0.4));
   position:relative;
-  left:-40px;
+  left:-50px;
   z-index:3;
 }
 
@@ -189,7 +216,7 @@ body{
 .hero-text{
   max-width:360px;
   position:relative;
-  left:-160px; /* pulls text under mascot slightly */
+  left:-180px;
   z-index:2;
 }
 
@@ -234,7 +261,7 @@ body{
   }
 
   .hero img{
-    width:360px;
+    width:380px;
     left:0;
   }
 
@@ -251,6 +278,8 @@ body{
 <div class="stitch top"></div>
 <div class="stitch bottom"></div>
 
+<div class="peek-hamburger" onclick="openMenu()">☰</div>
+
 <div class="overlay" onclick="closeMenu()"></div>
 
 <div class="sidebar" id="sidebar">
@@ -265,7 +294,6 @@ body{
   <div class="brand">gnawed</div>
 
   <div class="right-icons">
-    <div class="icon" onclick="openMenu()">☰</div>
     <div class="icon heart">♡</div>
 
     <svg class="bag" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="1.8">
@@ -279,7 +307,7 @@ body{
 
 <div class="hero">
 
-  <img src="mascot.png" alt="Mascot">
+  <img src="mascot2.png" alt="Mascot">
 
   <div class="hero-text">
     <h1>soft gothic. hand altered.</h1>
