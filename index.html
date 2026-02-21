@@ -10,6 +10,20 @@
 <style>
 
 body {
+  background-color: #050505;
+  .corner {
+  position: fixed;
+  font-size: 14px;
+  opacity: 0.15;
+  pointer-events: none;
+  font-family: serif;
+}
+
+.top-left { top: 20px; left: 20px; }
+.top-right { top: 20px; right: 20px; }
+.bottom-left { bottom: 20px; left: 20px; }
+.bottom-right { bottom: 20px; right: 20px;
+background-image: url("https://www.transparenttextures.com/patterns/asfalt-light.png");
   margin: 0;
   background-color: #050505;
   color: #e8e2f0;
@@ -48,6 +62,14 @@ nav a:hover::after {
 }
 
 .logo {
+  logo {
+  position: relative;
+}
+
+.logo::after {
+  content: ".";
+  color: #bfa6ff;
+}
   font-family: 'Cinzel', serif;
   font-size: 1.5rem;
   letter-spacing: 4px;
@@ -93,6 +115,18 @@ nav a:hover::after {
 
 .product:hover {
   border-color: rgba(255,255,255,0.4);
+  transform: translateY(-6px);
+}
+
+.product:hover::after {
+  content: "distressed / altered / reclaimed";
+  position: absolute;
+  bottom: 10px;
+  left: 25px;
+  font-size: 0.7rem;
+  opacity: 0.4;
+  letter-spacing: 2px;
+}
 }
 
 .product::before {
@@ -210,6 +244,9 @@ footer {
 <footer>
   © 2026 gnawed — constructed in shadow
 </footer>
-
+<div class="corner top-left">✶</div>
+<div class="corner top-right">☾</div>
+<div class="corner bottom-left">✦</div>
+<div class="corner bottom-right">✶</div>
 </body>
 </html>
