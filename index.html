@@ -5,96 +5,72 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>gnawed</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Cormorant+Garamond:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
 
+/* ---------------- BASE ---------------- */
+
 body {
-  background-color: #050505;
-  .corner {
-  position: fixed;
-  font-size: 14px;
-  opacity: 0.15;
-  pointer-events: none;
-  font-family: serif;
+  margin: 0;
+  background: #111013;
+  background-image: radial-gradient(circle at top, #1a151c 0%, #111013 60%);
+  color: #e6d9ec;
+  font-family: 'Cormorant Garamond', serif;
+  overflow-x: hidden;
 }
 
-.top-left { top: 20px; left: 20px; }
-.top-right { top: 20px; right: 20px; }
-.bottom-left { bottom: 20px; left: 20px; }
-.bottom-right { bottom: 20px; right: 20px;
-background-image: url("https://www.transparenttextures.com/patterns/asfalt-light.png");
-  margin: 0;
-  background-color: #050505;
-  color: #e8e2f0;
-  font-family: 'Playfair Display', serif;
-  letter-spacing: 0.5px;
+a {
+  text-decoration: none;
+  color: #d8a8ff;
+  transition: 0.3s;
 }
+
+a:hover {
+  color: #ffffff;
+}
+
+/* ---------------- NAV ---------------- */
 
 nav {
   display: flex;
   justify-content: space-between;
-  padding: 30px 8%;
+  align-items: center;
+  padding: 25px 8%;
   font-size: 0.9rem;
-  text-transform: lowercase;
-}
-
-nav a {
-  color: #e8e2f0;
-  text-decoration: none;
-  margin-left: 25px;
-  position: relative;
-}
-
-nav a::after {
-  content: "";
-  position: absolute;
-  width: 0%;
-  height: 1px;
-  background: #e8e2f0;
-  bottom: -4px;
-  left: 0;
-  transition: 0.4s;
-}
-
-nav a:hover::after {
-  width: 100%;
+  letter-spacing: 1px;
 }
 
 .logo {
-  logo {
-  position: relative;
+  font-family: 'Special Elite', cursive;
+  font-size: 1.6rem;
+  letter-spacing: 3px;
 }
 
-.logo::after {
-  content: ".";
-  color: #bfa6ff;
+.nav-links a {
+  margin-left: 25px;
 }
-  font-family: 'Cinzel', serif;
-  font-size: 1.5rem;
-  letter-spacing: 4px;
-}
+
+/* ---------------- HERO ---------------- */
 
 .hero {
-  padding: 120px 10% 100px 10%;
-  max-width: 900px;
+  padding: 120px 10%;
+  max-width: 800px;
 }
 
 .hero h1 {
-  font-family: 'Cinzel', serif;
-  font-size: 4.5rem;
-  font-weight: 400;
+  font-family: 'Special Elite', cursive;
+  font-size: 4rem;
   margin: 0;
-  letter-spacing: 6px;
 }
 
 .hero p {
-  margin-top: 25px;
-  max-width: 500px;
-  font-size: 1.1rem;
+  margin-top: 20px;
   opacity: 0.7;
-  line-height: 1.6;
+  line-height: 1.7;
 }
+
+/* ---------------- SHOP GRID ---------------- */
 
 .collection {
   padding: 80px 8%;
@@ -102,80 +78,119 @@ nav a:hover::after {
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 40px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 50px;
 }
 
 .product {
-  border: 1px solid rgba(255,255,255,0.08);
-  padding: 25px;
-  transition: 0.4s;
   position: relative;
+  overflow: hidden;
 }
 
-.product:hover {
-  border-color: rgba(255,255,255,0.4);
-  transform: translateY(-6px);
+.product img {
+  width: 100%;
+  height: 380px;
+  object-fit: cover;
+  transition: 0.6s ease;
+  filter: brightness(85%);
 }
 
-.product:hover::after {
-  content: "distressed / altered / reclaimed";
+.product-info {
   position: absolute;
-  bottom: 10px;
-  left: 25px;
-  font-size: 0.7rem;
-  opacity: 0.4;
-  letter-spacing: 2px;
-}
+  bottom: 20px;
+  left: 20px;
+  opacity: 0;
+  transition: 0.6s ease;
 }
 
-.product::before {
-  content: "✶";
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  font-size: 0.8rem;
-  opacity: 0.3;
+.product:hover img {
+  transform: scale(1.05);
+  filter: brightness(60%);
 }
 
-.product h3 {
-  font-size: 1.1rem;
-  margin-bottom: 10px;
-  font-weight: 400;
+.product:hover .product-info {
+  opacity: 1;
+}
+
+.product-info h3 {
+  margin: 0;
+  font-size: 1.2rem;
 }
 
 .price {
-  opacity: 0.6;
   font-size: 0.9rem;
-}
-
-.about {
-  padding: 120px 10%;
-  max-width: 600px;
-}
-
-.about h2 {
-  font-family: 'Cinzel', serif;
-  font-weight: 400;
-  letter-spacing: 3px;
-}
-
-.about p {
   opacity: 0.7;
-  line-height: 1.7;
+}
+
+/* ---------------- SIDEBAR ---------------- */
+
+.sidebar {
+  position: fixed;
+  right: -250px;
+  top: 0;
+  width: 250px;
+  height: 100%;
+  background: #19161d;
+  padding: 80px 30px;
+  transition: 0.4s ease;
+  box-shadow: -5px 0 20px rgba(0,0,0,0.5);
+}
+
+.sidebar.open {
+  right: 0;
+}
+
+.sidebar h3 {
+  font-family: 'Special Elite', cursive;
+  margin-bottom: 20px;
+}
+
+.sidebar a {
+  display: block;
+  margin-bottom: 15px;
+  opacity: 0.7;
+}
+
+/* ---------------- ABOUT PAGE ---------------- */
+
+.about-page {
+  padding: 120px 10%;
+  max-width: 700px;
+  display: none;
+}
+
+.about-page.active {
+  display: block;
+}
+
+.about-page h2 {
+  font-family: 'Special Elite', cursive;
+}
+
+.about-page p {
+  line-height: 1.8;
+  opacity: 0.8;
   margin-top: 20px;
 }
 
+/* ---------------- FOOTER ---------------- */
+
 footer {
-  padding: 60px 8%;
+  padding: 80px 8%;
   font-size: 0.8rem;
   opacity: 0.4;
 }
 
-.divider {
-  height: 1px;
-  background: linear-gradient(to right, transparent, rgba(255,255,255,0.2), transparent);
-  margin: 60px 0;
+/* ---------------- MASCOT DECOR ---------------- */
+
+.mascot {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  opacity: 0.08;
+  font-size: 6rem;
+  pointer-events: none;
+  font-family: 'Special Elite', cursive;
 }
 
 </style>
@@ -185,10 +200,9 @@ footer {
 
 <nav>
   <div class="logo">gnawed</div>
-  <div>
-    <a href="#">shop</a>
-    <a href="#">archive</a>
-    <a href="#">about</a>
+  <div class="nav-links">
+    <a href="#" onclick="toggleShop()">shop</a>
+    <a href="#" onclick="showAbout()">about</a>
     <a href="#">cart</a>
   </div>
 </nav>
@@ -196,57 +210,87 @@ footer {
 <section class="hero">
   <h1>gnawed</h1>
   <p>
-    garments distressed with intention. delicate ruin.
-    soft silhouettes altered, bitten, reworked —
-    preserved from disappearance.
+    delicate garments, bitten at the edges.
+    altered softly. stitched imperfectly.
+    made slowly by one person.
   </p>
 </section>
-
-<div class="divider"></div>
 
 <section class="collection">
   <div class="grid">
 
     <div class="product">
-      <h3>stitched restraint top</h3>
-      <div class="price">$84</div>
+      <img src="https://via.placeholder.com/400x500">
+      <div class="product-info">
+        <h3>mourning lace dress</h3>
+        <div class="price">$128</div>
+      </div>
     </div>
 
     <div class="product">
-      <h3>fractured lace dress</h3>
-      <div class="price">$132</div>
-    </div>
-
-    <div class="product">
-      <h3>gnawed hem skirt</h3>
-      <div class="price">$96</div>
-    </div>
-
-    <div class="product">
-      <h3>mourning ribbon corset</h3>
-      <div class="price">$118</div>
+      <img src="https://via.placeholder.com/400x500">
+      <div class="product-info">
+        <h3>gnawed hem skirt</h3>
+        <div class="price">$94</div>
+      </div>
     </div>
 
   </div>
 </section>
 
-<div class="divider"></div>
+<div class="sidebar" id="shopSidebar">
+  <h3>collections</h3>
+  <a href="#">skirts</a>
+  <a href="#">dresses</a>
+  <a href="#">tops</a>
+  <a href="#">shorts</a>
+  <a href="#">accessories</a>
+</div>
 
-<section class="about">
-  <h2>philosophy</h2>
+<section class="about-page" id="aboutPage">
+  <h2>about gnawed</h2>
   <p>
-    gnawed exists in the space between tenderness and decay.
-    each piece is reclaimed, altered, and slightly undone —
-    never perfect, always intentional.
+    gnawed is a one-person brand created and run by a high school student.
+    every garment is altered, distressed, and prepared by hand.
+  </p>
+
+  <p>
+    this project began as a way to reclaim forgotten clothing —
+    to make something delicate out of damage.
+  </p>
+
+  <p>
+    a portion of profits are donated to 
+    <a href="https://onetreeplanted.org" target="_blank">
+    One Tree Planted
+    </a>, 
+    supporting global reforestation and environmental restoration.
+  </p>
+
+  <p>
+    nothing here is mass-produced.
+    nothing is perfect.
+    everything is intentional.
   </p>
 </section>
 
+<div class="mascot">☾</div>
+
 <footer>
-  © 2026 gnawed — constructed in shadow
+  © 2026 gnawed — constructed quietly
 </footer>
-<div class="corner top-left">✶</div>
-<div class="corner top-right">☾</div>
-<div class="corner bottom-left">✦</div>
-<div class="corner bottom-right">✶</div>
+
+<script>
+
+function toggleShop() {
+  document.getElementById("shopSidebar").classList.toggle("open");
+}
+
+function showAbout() {
+  document.getElementById("aboutPage").classList.toggle("active");
+}
+
+</script>
+
 </body>
 </html>
