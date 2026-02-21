@@ -194,4 +194,52 @@ footer {
   <a href="#">accessories</a>
 </div>
 
-<nav
+<nav>
+  <div class="logo">gnawed</div>
+  <div class="nav-links">
+    <a href="#" onclick="toggleSidebar()">shop</a>
+    <a href="about.html">about</a>
+    <a href="#">cart</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <h1>gnawed</h1>
+  <div class="accent-line"></div>
+  <p>
+    reconstructed garments. hand-altered silhouettes.
+    quiet femininity with tension in the seams.
+  </p>
+</section>
+
+<div class="showcase">
+  <img src="https://via.placeholder.com/400x520?text=Slip+Dress" class="active">
+  <img src="https://via.placeholder.com/400x520?text=Ribbon+Skirt">
+  <img src="https://via.placeholder.com/400x520?text=Sheer+Blouse">
+</div>
+
+<div class="showcase-title">
+  rotating archive selection
+</div>
+
+<footer>
+  constructed slowly — 2026
+</footer>
+
+<script>
+function toggleSidebar() {
+  document.getElementById("sidebar").classList.toggle("open");
+}
+
+let slides = document.querySelectorAll(".showcase img");
+let index = 0;
+
+setInterval(() => {
+  slides[index].classList.remove("active");
+  index = (index + 1) % slides.length;
+  slides[index].classList.add("active");
+}, 4000);
+</script>
+
+</body>
+</html>
