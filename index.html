@@ -16,23 +16,23 @@ body {
   overflow-x: hidden;
 }
 
-/* CONNECTED STITCH */
-.stitch {
-  height: 18px;
+/* SINGLE STITCH TOP + BOTTOM */
+.stitch-top,
+.stitch-bottom {
+  height: 14px;
   background: repeating-linear-gradient(
     90deg,
     #f2f2f2 0px,
     #f2f2f2 2px,
     transparent 2px,
-    transparent 10px
-  ),
-  repeating-linear-gradient(
-    0deg,
-    #f2f2f2 0px,
-    #f2f2f2 2px,
-    transparent 2px,
-    transparent 10px
+    transparent 8px
   );
+}
+
+.stitch-bottom {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
 }
 
 /* HEADER */
@@ -62,13 +62,20 @@ header {
   cursor: pointer;
 }
 
-/* SHOPPING BAG ICON */
+/* HEART OUTLINE */
+.heart {
+  font-size: 22px;
+  cursor: pointer;
+}
+
+/* SHOPPING BAG OUTLINE */
 .bag {
-  width: 24px;
-  height: 24px;
+  width: 22px;
+  height: 22px;
   border: 2px solid #f2f2f2;
   border-radius: 3px;
   position: relative;
+  cursor: pointer;
 }
 
 .bag::before {
@@ -80,15 +87,10 @@ header {
   border-bottom: none;
   border-radius: 8px 8px 0 0;
   top: -8px;
-  left: 4px;
+  left: 3px;
 }
 
-.bag:hover {
-  opacity: 0.6;
-  cursor: pointer;
-}
-
-/* SIDEBAR */
+/* SIDEBAR (FULLY HIDDEN) */
 .sidebar {
   position: fixed;
   left: -260px;
@@ -97,8 +99,8 @@ header {
   height: 100%;
   background: #111;
   padding: 30px 20px;
-  transition: 0.4s ease;
-  z-index: 10;
+  transition: left 0.4s ease;
+  z-index: 100;
 }
 
 .sidebar.active {
@@ -116,38 +118,33 @@ header {
 
 .sidebar a {
   display: block;
-  margin-bottom: 20px;
+  padding: 12px 0;
   text-decoration: none;
   color: #f2f2f2;
   letter-spacing: 2px;
+  border-bottom: 1px solid #222;
 }
 
-/* STATIC IMAGE BOX */
+/* STATIC HERO (BLANK) */
 .static-hero {
   height: 70vh;
   background: #141414;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: 'Eater', cursive;
-  font-size: 50px;
-  letter-spacing: 3px;
 }
 
 /* COUNTER */
 .counter {
   text-align: center;
   padding: 20px;
-  font-size: 18px;
+  font-size: 16px;
   letter-spacing: 2px;
 }
 
-/* FADE SECTION (SMALLER + LOWER) */
+/* FADE SECTION */
 .hero {
   position: relative;
   height: 50vh;
-  margin: 40px auto;
   width: 80%;
+  margin: 40px auto 120px auto;
   overflow: hidden;
 }
 
@@ -155,40 +152,15 @@ header {
   position: absolute;
   width: 100%;
   height: 100%;
+  background: #1a1a1a;
   opacity: 0;
   transition: opacity 1.5s ease-in-out;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: 'Eater', cursive;
-  font-size: 40px;
 }
 
-.slide:nth-child(1) { background: #1a1a1a; }
 .slide:nth-child(2) { background: #151515; }
 .slide:nth-child(3) { background: #181818; }
 
 .slide.active {
-  opacity: 1;
-}
-
-/* FOOTER */
-footer {
-  padding: 60px 40px;
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-}
-
-footer a {
-  color: #f2f2f2;
-  text-decoration: none;
-  display: block;
-  margin-bottom: 10px;
-  opacity: 0.7;
-}
-
-footer a:hover {
   opacity: 1;
 }
 </style>
@@ -196,12 +168,13 @@ footer a:hover {
 
 <body>
 
-<div class="stitch"></div>
+<div class="stitch-top"></div>
 
 <header>
   <div class="hamburger" onclick="toggleMenu()">☰</div>
   <div class="logo">GNAW</div>
   <div class="icons">
+    <div class="heart">♡</div>
     <div class="bag"></div>
   </div>
 </header>
@@ -215,62 +188,38 @@ footer a:hover {
   <a href="about.html">About Us</a>
 </div>
 
-<section class="static-hero">
-  GNAW COLLECTION
-</section>
+<section class="static-hero"></section>
 
 <div class="counter">
-  <span id="count">0</span> pieces saved from landfills
+  <span id="count">247</span> pieces saved from landfills
 </div>
 
 <section class="hero">
-  <div class="slide active">DISTORTED TEE</div>
-  <div class="slide">RECONSTRUCTED HOODIE</div>
-  <div class="slide">SHREDDED SHORTS</div>
+  <div class="slide active"></div>
+  <div class="slide"></div>
+  <div class="slide"></div>
 </section>
 
-<footer>
-  <div>
-    <strong>ABOUT</strong>
-    <a href="about.html">About Us</a>
-  </div>
-
-  <div>
-    <strong>SOCIAL</strong>
-    <a href="#">Instagram</a>
-    <a href="#">TikTok</a>
-    <a href="#">Pinterest</a>
-  </div>
-
-  <div>
-    <strong>CONTACT</strong>
-    <a href="#">contact@gnawworld.com</a>
-  </div>
-</footer>
-
-<div class="stitch"></div>
+<div class="stitch-bottom"></div>
 
 <script>
-/* SIDEBAR */
 function toggleMenu() {
-  document.getElementById('sidebar').classList.toggle('active');
+  document.getElementById("sidebar").classList.toggle("active");
 }
 
-/* FADE SLIDES */
-const slides = document.querySelectorAll('.slide');
+const slides = document.querySelectorAll(".slide");
 let current = 0;
+
 setInterval(() => {
-  slides[current].classList.remove('active');
+  slides[current].classList.remove("active");
   current = (current + 1) % slides.length;
-  slides[current].classList.add('active');
+  slides[current].classList.add("active");
 }, 4000);
 
-/* COUNTER */
 let count = 247;
-const counter = document.getElementById("count");
 setInterval(() => {
   count++;
-  counter.textContent = count;
+  document.getElementById("count").textContent = count;
 }, 3000);
 </script>
 
