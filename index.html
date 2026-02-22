@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>GNAW</title>
 
-<!-- Replace with actual Devastation Demo font file if you have it -->
 <style>
 @font-face {
   font-family: 'Devastation';
@@ -14,28 +13,29 @@
 
 body {
   margin: 0;
-  background: #0b0b0b;
-  color: #e6e6e6;
+  background: #0a0a0a;
+  color: #f2f2f2;
   font-family: Arial, sans-serif;
-  overflow-x: hidden;
 }
 
 /* CROSS STITCH BORDERS */
-.stitch-top,
-.stitch-bottom {
-  height: 14px;
-  background: repeating-linear-gradient(
-    45deg,
-    #111 0px,
-    #111 8px,
-    #e6e6e6 8px,
-    #e6e6e6 10px
-  );
-}
-
-.stitch-bottom {
-  position: relative;
-  margin-top: 60px;
+.stitch {
+  height: 16px;
+  background:
+    repeating-linear-gradient(
+      45deg,
+      #0a0a0a 0px,
+      #0a0a0a 6px,
+      #f2f2f2 6px,
+      #f2f2f2 8px
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      transparent 0px,
+      transparent 6px,
+      #f2f2f2 6px,
+      #f2f2f2 8px
+    );
 }
 
 /* HEADER */
@@ -43,19 +43,19 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 40px;
+  padding: 25px 40px;
 }
 
 .logo {
   font-family: 'Devastation', sans-serif;
-  font-size: 40px;
+  font-size: 48px;
   letter-spacing: 6px;
 }
 
 .icons {
   display: flex;
   gap: 20px;
-  font-size: 20px;
+  font-size: 22px;
   cursor: pointer;
 }
 
@@ -63,7 +63,7 @@ header {
   opacity: 0.6;
 }
 
-/* HERO FADE SECTION */
+/* HERO */
 .hero {
   position: relative;
   height: 80vh;
@@ -75,48 +75,46 @@ header {
   width: 100%;
   height: 100%;
   opacity: 0;
-  transition: opacity 1.5s ease-in-out;
+  transition: opacity 1.8s ease-in-out;
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: 'Devastation', sans-serif;
-  font-size: 50px;
+  font-size: 55px;
   letter-spacing: 4px;
 }
 
-/* Fake “image” backgrounds */
-.slide:nth-child(1) { background: #121212; }
-.slide:nth-child(2) { background: #1a1a1a; }
-.slide:nth-child(3) { background: #151515; }
+.slide:nth-child(1) { background: #111; }
+.slide:nth-child(2) { background: #181818; }
+.slide:nth-child(3) { background: #141414; }
 
 .slide.active {
   opacity: 1;
 }
 
-/* PRODUCT SECTION */
+/* PRODUCTS */
 .products {
-  display: flex;
-  justify-content: center;
-  gap: 60px;
-  padding: 60px 20px;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 40px;
+  padding: 60px 40px;
 }
 
 .product-card {
-  border: 1px solid #333;
+  border: 1px solid #222;
   padding: 30px;
-  width: 220px;
   text-align: center;
-  transition: 0.3s ease;
+  transition: 0.3s;
 }
 
 .product-card:hover {
-  border-color: #e6e6e6;
+  border-color: #f2f2f2;
 }
 
 .product-card h3 {
-  font-weight: 400;
+  margin-bottom: 10px;
   letter-spacing: 2px;
+  font-weight: 400;
 }
 
 .product-card p {
@@ -125,11 +123,10 @@ header {
 
 /* FOOTER */
 footer {
-  background: #0e0e0e;
+  background: #0d0d0d;
   padding: 60px 40px;
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 40px;
 }
 
@@ -142,7 +139,7 @@ footer p, footer a {
   font-size: 14px;
   opacity: 0.7;
   text-decoration: none;
-  color: #e6e6e6;
+  color: #f2f2f2;
 }
 
 footer a:hover {
@@ -153,7 +150,7 @@ footer a:hover {
 
 <body>
 
-<div class="stitch-top"></div>
+<div class="stitch"></div>
 
 <header>
   <div class="logo">GNAW</div>
@@ -165,8 +162,8 @@ footer a:hover {
 
 <section class="hero">
   <div class="slide active">DISTORTED TEE</div>
-  <div class="slide">REWORKED HOODIE</div>
-  <div class="slide">SHATTERED SHORTS</div>
+  <div class="slide">RECONSTRUCTED HOODIE</div>
+  <div class="slide">SHREDDED SHORTS</div>
 </section>
 
 <section class="products">
@@ -189,11 +186,11 @@ footer a:hover {
 <footer>
   <div>
     <h4>ABOUT</h4>
-    <p>GNAW is a distortion of structure and softness. Handmade pieces rooted in decay and reconstruction.</p>
+    <p>GNAW explores distortion, decay, and reconstruction. Each piece is made with intention and tension.</p>
   </div>
 
   <div>
-    <h4>SOCIALS</h4>
+    <h4>SOCIAL</h4>
     <p><a href="#">Instagram</a></p>
     <p><a href="#">TikTok</a></p>
     <p><a href="#">Pinterest</a></p>
@@ -201,26 +198,23 @@ footer a:hover {
 
   <div>
     <h4>CONTACT</h4>
-    <p>Email: contact@gnaw.com</p>
+    <p>Email: contact@gnawworld.com</p>
     <p>Business inquiries welcome.</p>
   </div>
 </footer>
 
-<div class="stitch-bottom"></div>
+<div class="stitch"></div>
 
 <script>
 const slides = document.querySelectorAll('.slide');
 let current = 0;
 
-function showSlide(index) {
-  slides.forEach(s => s.classList.remove('active'));
-  slides[index].classList.add('active');
-}
-
 setInterval(() => {
+  slides[current].classList.remove('active');
   current = (current + 1) % slides.length;
-  showSlide(current);
+  slides[current].classList.add('active');
 }, 4000);
 </script>
 
-</body
+</body>
+</html>
