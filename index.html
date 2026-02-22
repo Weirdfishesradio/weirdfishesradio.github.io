@@ -16,7 +16,7 @@ body {
   overflow-x: hidden;
 }
 
-/* SINGLE STITCH TOP + BOTTOM */
+/* TOP + BOTTOM STITCH */
 .stitch-top,
 .stitch-bottom {
   height: 14px;
@@ -56,19 +56,16 @@ header {
   align-items: center;
 }
 
-/* HAMBURGER */
 .hamburger {
   font-size: 26px;
   cursor: pointer;
 }
 
-/* HEART OUTLINE */
 .heart {
   font-size: 22px;
   cursor: pointer;
 }
 
-/* SHOPPING BAG OUTLINE */
 .bag {
   width: 22px;
   height: 22px;
@@ -90,7 +87,7 @@ header {
   left: 3px;
 }
 
-/* OVERLAY (for click outside close) */
+/* OVERLAY */
 .overlay {
   position: fixed;
   inset: 0;
@@ -103,10 +100,10 @@ header {
   display: block;
 }
 
-/* SIDEBAR (FULLY HIDDEN) */
+/* SIDEBAR */
 .sidebar {
   position: fixed;
-  left: -260px;
+  left: -280px; /* fully hidden */
   top: 0;
   width: 260px;
   height: 100%;
@@ -114,12 +111,39 @@ header {
   padding: 30px 20px;
   transition: left 0.4s ease;
   z-index: 100;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* Vertical stitching */
+.sidebar::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 14px;
+  height: 100%;
+  background: repeating-linear-gradient(
+    180deg,
+    #f2f2f2 0px,
+    #f2f2f2 2px,
+    transparent 2px,
+    transparent 8px
+  );
 }
 
 .sidebar.active {
   left: 0;
 }
 
+/* Sidebar close hamburger */
+.sidebar .close {
+  font-size: 26px;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+/* Search */
 .sidebar input {
   width: 100%;
   padding: 8px;
@@ -127,25 +151,20 @@ header {
   background: #0a0a0a;
   border: 1px solid #333;
   color: #f2f2f2;
+  box-sizing: border-box;
 }
 
+/* Links */
 .sidebar a {
   display: block;
   padding: 12px 0;
   text-decoration: none;
   color: #f2f2f2;
   letter-spacing: 2px;
-  border-bottom: 1px solid #f2f2f2; /* WHITE LINES */
+  border-bottom: 1px solid #f2f2f2;
 }
 
-/* Push bottom links down */
-.sidebar .bottom-links {
-  position: absolute;
-  bottom: 40px;
-  width: 80%;
-}
-
-/* STATIC HERO (BLANK) */
+/* STATIC HERO */
 .static-hero {
   height: 70vh;
   background: #141414;
@@ -183,6 +202,20 @@ header {
 .slide.active {
   opacity: 1;
 }
+
+/* MAIN FOOTER MENU */
+.main-footer {
+  text-align: center;
+  padding: 40px 20px 120px 20px;
+}
+
+.main-footer a {
+  display: block;
+  margin: 10px 0;
+  color: #f2f2f2;
+  text-decoration: none;
+  letter-spacing: 2px;
+}
 </style>
 </head>
 
@@ -191,7 +224,7 @@ header {
 <div class="stitch-top"></div>
 
 <header>
-  <div class="hamburger" onclick="toggleMenu()">☰</div>
+  <div class="hamburger" onclick="openMenu()">☰</div>
   <div class="logo">GNAW</div>
   <div class="icons">
     <div class="heart">♡</div>
@@ -202,19 +235,12 @@ header {
 <div class="overlay" id="overlay" onclick="closeMenu()"></div>
 
 <div class="sidebar" id="sidebar">
+  <div class="close" onclick="closeMenu()">☰</div>
   <input type="text" placeholder="Search...">
   <a href="#">Skirts</a>
   <a href="#">Shorts</a>
   <a href="#">Tops</a>
   <a href="#">Accessories</a>
-  <a href="about.html">About Us</a>
-
-  <div class="bottom-links">
-    <a href="#">Instagram</a>
-    <a href="#">TikTok</a>
-    <a href="#">Contact</a>
-    <a href="#">FAQ</a>
-  </div>
 </div>
 
 <section class="static-hero"></section>
@@ -229,10 +255,18 @@ header {
   <div class="slide"></div>
 </section>
 
+<div class="main-footer">
+  <a href="about.html">About Us</a>
+  <a href="#">Instagram</a>
+  <a href="#">TikTok</a>
+  <a href="#">Contact</a>
+  <a href="#">FAQ</a>
+</div>
+
 <div class="stitch-bottom"></div>
 
 <script>
-function toggleMenu() {
+function openMenu() {
   document.getElementById("sidebar").classList.add("active");
   document.getElementById("overlay").classList.add("active");
 }
