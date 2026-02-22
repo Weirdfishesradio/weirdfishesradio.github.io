@@ -5,37 +5,34 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>GNAW</title>
 
-<style>
-@font-face {
-  font-family: 'Devastation';
-  src: local('Devastation Demo');
-}
+<link href="https://fonts.googleapis.com/css2?family=Eater&display=swap" rel="stylesheet">
 
+<style>
 body {
   margin: 0;
   background: #0a0a0a;
   color: #f2f2f2;
   font-family: Arial, sans-serif;
+  overflow-x: hidden;
 }
 
-/* CROSS STITCH BORDERS */
+/* CONNECTED STITCH */
 .stitch {
-  height: 16px;
-  background:
-    repeating-linear-gradient(
-      45deg,
-      #0a0a0a 0px,
-      #0a0a0a 6px,
-      #f2f2f2 6px,
-      #f2f2f2 8px
-    ),
-    repeating-linear-gradient(
-      -45deg,
-      transparent 0px,
-      transparent 6px,
-      #f2f2f2 6px,
-      #f2f2f2 8px
-    );
+  height: 18px;
+  background: repeating-linear-gradient(
+    90deg,
+    #f2f2f2 0px,
+    #f2f2f2 2px,
+    transparent 2px,
+    transparent 10px
+  ),
+  repeating-linear-gradient(
+    0deg,
+    #f2f2f2 0px,
+    #f2f2f2 2px,
+    transparent 2px,
+    transparent 10px
+  );
 }
 
 /* HEADER */
@@ -43,30 +40,114 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 25px 40px;
+  padding: 20px 30px;
+  position: relative;
 }
 
 .logo {
-  font-family: 'Devastation', sans-serif;
-  font-size: 48px;
-  letter-spacing: 6px;
+  font-family: 'Eater', cursive;
+  font-size: 42px;
+  letter-spacing: 4px;
 }
 
 .icons {
   display: flex;
   gap: 20px;
-  font-size: 22px;
+  align-items: center;
+}
+
+/* HAMBURGER */
+.hamburger {
+  font-size: 26px;
   cursor: pointer;
 }
 
-.icons span:hover {
-  opacity: 0.6;
+/* SHOPPING BAG ICON */
+.bag {
+  width: 24px;
+  height: 24px;
+  border: 2px solid #f2f2f2;
+  border-radius: 3px;
+  position: relative;
 }
 
-/* HERO */
+.bag::before {
+  content: '';
+  position: absolute;
+  width: 12px;
+  height: 8px;
+  border: 2px solid #f2f2f2;
+  border-bottom: none;
+  border-radius: 8px 8px 0 0;
+  top: -8px;
+  left: 4px;
+}
+
+.bag:hover {
+  opacity: 0.6;
+  cursor: pointer;
+}
+
+/* SIDEBAR */
+.sidebar {
+  position: fixed;
+  left: -260px;
+  top: 0;
+  width: 260px;
+  height: 100%;
+  background: #111;
+  padding: 30px 20px;
+  transition: 0.4s ease;
+  z-index: 10;
+}
+
+.sidebar.active {
+  left: 0;
+}
+
+.sidebar input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 30px;
+  background: #0a0a0a;
+  border: 1px solid #333;
+  color: #f2f2f2;
+}
+
+.sidebar a {
+  display: block;
+  margin-bottom: 20px;
+  text-decoration: none;
+  color: #f2f2f2;
+  letter-spacing: 2px;
+}
+
+/* STATIC IMAGE BOX */
+.static-hero {
+  height: 70vh;
+  background: #141414;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Eater', cursive;
+  font-size: 50px;
+  letter-spacing: 3px;
+}
+
+/* COUNTER */
+.counter {
+  text-align: center;
+  padding: 20px;
+  font-size: 18px;
+  letter-spacing: 2px;
+}
+
+/* FADE SECTION (SMALLER + LOWER) */
 .hero {
   position: relative;
-  height: 80vh;
+  height: 50vh;
+  margin: 40px auto;
+  width: 80%;
   overflow: hidden;
 }
 
@@ -75,71 +156,36 @@ header {
   width: 100%;
   height: 100%;
   opacity: 0;
-  transition: opacity 1.8s ease-in-out;
+  transition: opacity 1.5s ease-in-out;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: 'Devastation', sans-serif;
-  font-size: 55px;
-  letter-spacing: 4px;
+  font-family: 'Eater', cursive;
+  font-size: 40px;
 }
 
-.slide:nth-child(1) { background: #111; }
-.slide:nth-child(2) { background: #181818; }
-.slide:nth-child(3) { background: #141414; }
+.slide:nth-child(1) { background: #1a1a1a; }
+.slide:nth-child(2) { background: #151515; }
+.slide:nth-child(3) { background: #181818; }
 
 .slide.active {
   opacity: 1;
 }
 
-/* PRODUCTS */
-.products {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 40px;
-  padding: 60px 40px;
-}
-
-.product-card {
-  border: 1px solid #222;
-  padding: 30px;
-  text-align: center;
-  transition: 0.3s;
-}
-
-.product-card:hover {
-  border-color: #f2f2f2;
-}
-
-.product-card h3 {
-  margin-bottom: 10px;
-  letter-spacing: 2px;
-  font-weight: 400;
-}
-
-.product-card p {
-  opacity: 0.6;
-}
-
 /* FOOTER */
 footer {
-  background: #0d0d0d;
   padding: 60px 40px;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 40px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
 }
 
-footer h4 {
-  letter-spacing: 2px;
-  font-weight: 400;
-}
-
-footer p, footer a {
-  font-size: 14px;
-  opacity: 0.7;
-  text-decoration: none;
+footer a {
   color: #f2f2f2;
+  text-decoration: none;
+  display: block;
+  margin-bottom: 10px;
+  opacity: 0.7;
 }
 
 footer a:hover {
@@ -153,12 +199,29 @@ footer a:hover {
 <div class="stitch"></div>
 
 <header>
+  <div class="hamburger" onclick="toggleMenu()">☰</div>
   <div class="logo">GNAW</div>
   <div class="icons">
-    <span>♡</span>
-    <span>🛒</span>
+    <div class="bag"></div>
   </div>
 </header>
+
+<div class="sidebar" id="sidebar">
+  <input type="text" placeholder="Search...">
+  <a href="#">Skirts</a>
+  <a href="#">Shorts</a>
+  <a href="#">Tops</a>
+  <a href="#">Accessories</a>
+  <a href="about.html">About Us</a>
+</div>
+
+<section class="static-hero">
+  GNAW COLLECTION
+</section>
+
+<div class="counter">
+  <span id="count">0</span> pieces saved from landfills
+</div>
 
 <section class="hero">
   <div class="slide active">DISTORTED TEE</div>
@@ -166,54 +229,49 @@ footer a:hover {
   <div class="slide">SHREDDED SHORTS</div>
 </section>
 
-<section class="products">
-  <div class="product-card">
-    <h3>stitched long sleeve</h3>
-    <p>$68</p>
-  </div>
-
-  <div class="product-card">
-    <h3>bleached hoodie</h3>
-    <p>$94</p>
-  </div>
-
-  <div class="product-card">
-    <h3>distressed cargos</h3>
-    <p>$110</p>
-  </div>
-</section>
-
 <footer>
   <div>
-    <h4>ABOUT</h4>
-    <p>GNAW explores distortion, decay, and reconstruction. Each piece is made with intention and tension.</p>
+    <strong>ABOUT</strong>
+    <a href="about.html">About Us</a>
   </div>
 
   <div>
-    <h4>SOCIAL</h4>
-    <p><a href="#">Instagram</a></p>
-    <p><a href="#">TikTok</a></p>
-    <p><a href="#">Pinterest</a></p>
+    <strong>SOCIAL</strong>
+    <a href="#">Instagram</a>
+    <a href="#">TikTok</a>
+    <a href="#">Pinterest</a>
   </div>
 
   <div>
-    <h4>CONTACT</h4>
-    <p>Email: contact@gnawworld.com</p>
-    <p>Business inquiries welcome.</p>
+    <strong>CONTACT</strong>
+    <a href="#">contact@gnawworld.com</a>
   </div>
 </footer>
 
 <div class="stitch"></div>
 
 <script>
+/* SIDEBAR */
+function toggleMenu() {
+  document.getElementById('sidebar').classList.toggle('active');
+}
+
+/* FADE SLIDES */
 const slides = document.querySelectorAll('.slide');
 let current = 0;
-
 setInterval(() => {
   slides[current].classList.remove('active');
   current = (current + 1) % slides.length;
   slides[current].classList.add('active');
 }, 4000);
+
+/* COUNTER */
+let count = 247;
+const counter = document.getElementById("count");
+setInterval(() => {
+  count++;
+  counter.textContent = count;
+}, 3000);
 </script>
 
 </body>
