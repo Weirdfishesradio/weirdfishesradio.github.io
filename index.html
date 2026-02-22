@@ -90,6 +90,19 @@ header {
   left: 3px;
 }
 
+/* OVERLAY (for click outside close) */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  display: none;
+  z-index: 90;
+}
+
+.overlay.active {
+  display: block;
+}
+
 /* SIDEBAR (FULLY HIDDEN) */
 .sidebar {
   position: fixed;
@@ -122,7 +135,14 @@ header {
   text-decoration: none;
   color: #f2f2f2;
   letter-spacing: 2px;
-  border-bottom: 1px solid #222;
+  border-bottom: 1px solid #f2f2f2; /* WHITE LINES */
+}
+
+/* Push bottom links down */
+.sidebar .bottom-links {
+  position: absolute;
+  bottom: 40px;
+  width: 80%;
 }
 
 /* STATIC HERO (BLANK) */
@@ -179,6 +199,8 @@ header {
   </div>
 </header>
 
+<div class="overlay" id="overlay" onclick="closeMenu()"></div>
+
 <div class="sidebar" id="sidebar">
   <input type="text" placeholder="Search...">
   <a href="#">Skirts</a>
@@ -186,6 +208,13 @@ header {
   <a href="#">Tops</a>
   <a href="#">Accessories</a>
   <a href="about.html">About Us</a>
+
+  <div class="bottom-links">
+    <a href="#">Instagram</a>
+    <a href="#">TikTok</a>
+    <a href="#">Contact</a>
+    <a href="#">FAQ</a>
+  </div>
 </div>
 
 <section class="static-hero"></section>
@@ -204,7 +233,13 @@ header {
 
 <script>
 function toggleMenu() {
-  document.getElementById("sidebar").classList.toggle("active");
+  document.getElementById("sidebar").classList.add("active");
+  document.getElementById("overlay").classList.add("active");
+}
+
+function closeMenu() {
+  document.getElementById("sidebar").classList.remove("active");
+  document.getElementById("overlay").classList.remove("active");
 }
 
 const slides = document.querySelectorAll(".slide");
