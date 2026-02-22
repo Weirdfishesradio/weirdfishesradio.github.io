@@ -3,253 +3,151 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>gnawed</title>
+<title>yourbrand</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Eater&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
-
-/* ========== BASE ========== */
+/* ===== BASE ===== */
 body {
   margin: 0;
-  font-family: 'Eater', cursive;
-  background: #fff;
+  background: #0d0d0d;
+  color: #e8e8e8;
+  font-family: 'Inter', sans-serif;
   overflow-x: hidden;
-  color: #4b1e5c;
 }
 
-/* ========== BLACK STITCHED TOP + BOTTOM ========== */
-body::before,
-body::after {
-  content: "";
+/* ===== STITCHED BORDERS ===== */
+.stitch-top,
+.stitch-bottom {
+  height: 12px;
+  background: repeating-linear-gradient(
+    90deg,
+    #1a1a1a 0px,
+    #1a1a1a 6px,
+    #e8e8e8 6px,
+    #e8e8e8 8px
+  );
+}
+
+.stitch-bottom {
   position: fixed;
-  left: 0;
+  bottom: 0;
   width: 100%;
-  height: 20px;
-  z-index: 2000;
-  background-image:
-    repeating-linear-gradient(
-      90deg,
-      transparent 0px,
-      transparent 16px,
-      black 16px,
-      black 19px,
-      transparent 19px,
-      transparent 24px
-    );
 }
 
-body::before { top: 0; }
-body::after { bottom: 0; }
-
-/* ========== HEADER ========== */
+/* ===== HEADER ===== */
 header {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 30px 20px;
-  position: relative;
-}
-
-.logo {
-  font-size: 50px;
-  letter-spacing: 3px;
-  margin-left: 40px;
-}
-
-/* ========== HAMBURGER ========== */
-.hamburger {
-  position: fixed;
-  left: 6px;
-  top: 25px;
-  font-size: 28px;
-  cursor: pointer;
-  z-index: 3000;
-  color: #7b3fa6;
-}
-
-/* ========== SIDEBAR ========== */
-.sidebar {
-  position: fixed;
-  top: 0;
-  left: -230px;
-  width: 230px;
-  height: 100vh;
-  background: #e3c6f5;
-  padding-top: 140px;
-  transition: 0.4s ease;
-  z-index: 2500;
-}
-
-.sidebar.open {
-  left: 0;
-}
-
-/* Peeking strip */
-.sidebar::before {
-  content: "";
-  position: absolute;
-  right: -28px;
-  top: 0;
-  width: 28px;
-  height: 100%;
-  background: #e3c6f5;
-  box-shadow: 4px 0 10px rgba(0,0,0,0.1);
-}
-
-/* Lace only on peeking edge */
-.sidebar-lace {
-  position: absolute;
-  right: -28px;
-  top: 0;
-  width: 28px;
-  height: 100%;
-  background-image: url("lace.png");
-  background-size: contain;
-  background-repeat: repeat-y;
-  background-position: center;
-  pointer-events: none;
-}
-
-.sidebar nav a {
-  display: block;
-  padding: 15px 30px;
-  text-decoration: none;
-  color: #5a2677;
-  transition: 0.3s;
-}
-
-.sidebar nav a:hover {
-  background: #d4a9ee;
-}
-
-/* ========== HERO SECTION ========== */
-.hero {
-  position: relative;
   text-align: center;
-  padding: 60px 20px 0;
+  padding: 30px 20px;
+  font-size: 24px;
+  letter-spacing: 4px;
+  font-weight: 600;
 }
 
-.hero h1 {
-  font-size: 36px;
-  max-width: 600px;
-  margin: auto;
+/* ===== PRODUCT FADE SECTION ===== */
+.container {
   position: relative;
-  z-index: 1;
-}
-
-/* Mascot — only bottom overlaps */
-.mascot {
-  display: block;
-  margin: -40px auto 0;
-  width: 420px;
-  position: relative;
-  z-index: 2;
-}
-
-/* ========== FADING PRODUCT BOX ========== */
-.product-box {
-  margin: 120px auto 80px;
-  width: 280px;
-  height: 200px;
-  border: 3px dashed #b37ad6;
+  height: 60vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 24px;
-  transition: opacity 0.8s ease;
 }
 
-/* ========== ICONS TOP RIGHT ========== */
-.top-icons {
+.product {
   position: absolute;
-  right: 20px;
-  top: 25px;
-  display: flex;
-  gap: 20px;
-  font-size: 22px;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
 }
 
-.top-icons span {
+.product.active {
+  opacity: 1;
+}
+
+.product h2 {
+  font-weight: 400;
+  letter-spacing: 2px;
+}
+
+.product p {
+  font-size: 14px;
+  opacity: 0.6;
+}
+
+/* ===== BUTTONS ===== */
+.controls {
+  text-align: center;
+  margin-top: 20px;
+}
+
+button {
+  background: none;
+  border: 1px solid #e8e8e8;
+  color: #e8e8e8;
+  padding: 8px 16px;
+  margin: 5px;
   cursor: pointer;
+  letter-spacing: 1px;
+  transition: 0.3s ease;
 }
 
-/* ========== OVERLAY CLICK CLOSE ========== */
-.overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.2);
-  display: none;
-  z-index: 2000;
+button:hover {
+  background: #e8e8e8;
+  color: #0d0d0d;
 }
-
-.overlay.show {
-  display: block;
-}
-
 </style>
 </head>
-
 <body>
 
-<div class="hamburger" onclick="toggleMenu()">☰</div>
-
-<div class="sidebar" id="sidebar">
-  <div class="sidebar-lace"></div>
-  <nav>
-    <a href="#">Skirts</a>
-    <a href="#">Dresses</a>
-    <a href="#">Tops</a>
-    <a href="#">Shorts</a>
-    <a href="#">Accessories</a>
-  </nav>
-</div>
-
-<div class="overlay" id="overlay" onclick="toggleMenu()"></div>
+<div class="stitch-top"></div>
 
 <header>
-  <div class="logo">gnawed</div>
-  <div class="top-icons">
-    <span>?</span>
-    <span>♡</span>
-    <span class="bag-icon">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4b1e5c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M6 7h12l-1 14H7L6 7z"/>
-        <path d="M9 7V5a3 3 0 0 1 6 0v2"/>
-      </svg>
-    </span>
-  </div>
+YOURBRAND
 </header>
 
-<section class="hero">
-  <h1>stitched softness for sweet chaos.</h1>
-  <img src="mascot2.png" class="mascot">
-</section>
+<div class="container">
+  <div class="product active">
+    <h2>stitched tee</h2>
+    <p>$48</p>
+  </div>
 
-<div class="product-box" id="productBox">
-  Skirts
+  <div class="product">
+    <h2>distressed hoodie</h2>
+    <p>$82</p>
+  </div>
+
+  <div class="product">
+    <h2>reworked shorts</h2>
+    <p>$56</p>
+  </div>
 </div>
 
-<script>
+<div class="controls">
+  <button onclick="prev()">prev</button>
+  <button onclick="next()">next</button>
+</div>
 
-function toggleMenu() {
-  document.getElementById("sidebar").classList.toggle("open");
-  document.getElementById("overlay").classList.toggle("show");
+<div class="stitch-bottom"></div>
+
+<script>
+const products = document.querySelectorAll('.product');
+let current = 0;
+
+function show(index) {
+  products.forEach(p => p.classList.remove('active'));
+  products[index].classList.add('active');
 }
 
-const items = ["Skirts", "Dresses", "Tops", "Shorts", "Accessories"];
-let index = 0;
-const box = document.getElementById("productBox");
+function next() {
+  current = (current + 1) % products.length;
+  show(current);
+}
 
-setInterval(() => {
-  box.style.opacity = 0;
-  setTimeout(() => {
-    index = (index + 1) % items.length;
-    box.innerText = items[index];
-    box.style.opacity = 1;
-  }, 400);
-}, 2500);
-
+function prev() {
+  current = (current - 1 + products.length) % products.length;
+  show(current);
+}
 </script>
 
 </body>
