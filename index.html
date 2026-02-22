@@ -252,23 +252,45 @@ header {
   right: 3px;
 }
 
+/* TikTok Outline - Improved Shape */
 .tiktok {
-  width: 16px;
-  height: 22px;
-  border-left: 2px solid #f2f2f2;
-  border-bottom: 2px solid #f2f2f2;
   position: relative;
+  width: 22px;
+  height: 22px;
+}
+
+.tiktok::before {
+  content: "";
+  position: absolute;
+  left: 9px;
+  top: 2px;
+  width: 4px;
+  height: 14px;
+  background: #f2f2f2;
+  border-radius: 2px;
 }
 
 .tiktok::after {
   content: "";
   position: absolute;
-  width: 8px;
-  height: 8px;
+  left: 2px;
+  bottom: 2px;
+  width: 10px;
+  height: 10px;
   border: 2px solid #f2f2f2;
   border-radius: 50%;
-  bottom: -6px;
-  left: -6px;
+}
+
+/* top hook */
+.tiktok span {
+  position: absolute;
+  top: 2px;
+  left: 9px;
+  width: 10px;
+  height: 4px;
+  border-top: 2px solid #f2f2f2;
+  border-right: 2px solid #f2f2f2;
+  border-radius: 0 4px 0 0;
 }
 </style>
 </head>
@@ -314,11 +336,10 @@ header {
   <a href="#">Contact</a>
   <a href="#">FAQ</a>
 
-  <div class="label">Socials</div>
-  <div class="social-icons">
-    <div class="instagram"></div>
-    <div class="tiktok"></div>
-  </div>
+<div class="social-icons">
+  <div class="instagram"></div>
+  <div class="tiktok"><span></span></div>
+</div>
 </div>
 
 <div class="stitch-bottom"></div>
