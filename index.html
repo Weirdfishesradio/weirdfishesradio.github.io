@@ -7,9 +7,9 @@
 
 <style>
 * {
-  box-sizing: border-box;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 body {
@@ -19,15 +19,15 @@ body {
   overflow-x: hidden;
 }
 
-/* ================= STITCH ================= */
+/* ================= STITCH (|-|-) ================= */
 
-.stitch {
-  height: 22px;
+.stitch-line {
+  height: 24px;
   position: relative;
   background: #090708;
 }
 
-.stitch::before {
+.stitch-line::before {
   content: "";
   position: absolute;
   top: 50%;
@@ -37,17 +37,23 @@ body {
   transform: translateY(-50%);
 }
 
-.stitch::after {
+.stitch-line::after {
   content: "";
   position: absolute;
   inset: 0;
   background: repeating-linear-gradient(
     90deg,
     transparent 0px,
-    transparent 18px,
-    #f2f2f2 18px,
-    #f2f2f2 20px
+    transparent 20px,
+    #f2f2f2 20px,
+    #f2f2f2 22px
   );
+}
+
+.bottom-stitch {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
 }
 
 /* ================= HEADER ================= */
@@ -59,29 +65,29 @@ header {
   padding: 22px 30px;
 }
 
-.hamburger {
+.menu {
   font-size: 26px;
   cursor: pointer;
 }
 
 .logo img {
-  height: 90px;
+  height: 85px;
   display: block;
 }
 
-.icons {
+.header-icons {
   display: flex;
   align-items: center;
   gap: 22px;
 }
 
+/* Heart */
 .heart {
   font-size: 22px;
   cursor: pointer;
 }
 
-/* CART ICON */
-
+/* Cart */
 .cart {
   width: 22px;
   height: 18px;
@@ -99,7 +105,7 @@ header {
   border: 2px solid #f2f2f2;
   border-bottom: none;
   border-radius: 10px 10px 0 0;
-  top: -9px;
+  top: -10px;
   left: 3px;
 }
 
@@ -108,16 +114,16 @@ header {
 .overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.5);
+  background: rgba(0,0,0,0.55);
   opacity: 0;
-  visibility: hidden;
+  pointer-events: none;
   transition: 0.3s ease;
-  z-index: 10;
+  z-index: 5;
 }
 
 .overlay.active {
   opacity: 1;
-  visibility: visible;
+  pointer-events: all;
 }
 
 .sidebar {
@@ -126,11 +132,11 @@ header {
   left: 0;
   width: 260px;
   height: 100%;
-  background: #111;
+  background: #0f0c0c;
   padding: 30px 20px;
   transform: translateX(-100%);
   transition: transform 0.4s ease;
-  z-index: 20;
+  z-index: 10;
 }
 
 .sidebar.active {
@@ -139,15 +145,15 @@ header {
 
 .sidebar .close {
   font-size: 26px;
-  cursor: pointer;
   margin-bottom: 30px;
+  cursor: pointer;
 }
 
 .sidebar a {
   display: block;
   padding: 14px 0;
-  text-decoration: none;
   color: #f2f2f2;
+  text-decoration: none;
   border-bottom: 1px solid #f2f2f2;
   letter-spacing: 2px;
 }
@@ -156,7 +162,7 @@ header {
 
 .hero-box {
   height: 70vh;
-  background: #0f0d0d;
+  background: #0e0a0a;
 }
 
 /* ================= COUNTER ================= */
@@ -182,14 +188,13 @@ footer .label {
   letter-spacing: 2px;
 }
 
-.social {
+.social-row {
   display: flex;
   gap: 18px;
   margin-top: 10px;
 }
 
-/* INSTAGRAM ICON */
-
+/* Instagram */
 .instagram {
   width: 22px;
   height: 22px;
@@ -219,29 +224,21 @@ footer .label {
   top: 3px;
   right: 3px;
 }
-
-/* bottom stitch fixed */
-
-.stitch.bottom {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-}
 </style>
 </head>
 
 <body>
 
-<div class="stitch"></div>
+<div class="stitch-line"></div>
 
 <header>
-  <div class="hamburger" onclick="openMenu()">☰</div>
+  <div class="menu" onclick="openMenu()">☰</div>
 
   <div class="logo">
     <img src="unnamed.png" alt="GNAW Logo">
   </div>
 
-  <div class="icons">
+  <div class="header-icons">
     <div class="heart">♡</div>
     <div class="cart"></div>
   </div>
@@ -269,12 +266,12 @@ footer .label {
   <a href="#">FAQ</a>
 
   <div class="label">Socials</div>
-  <div class="social">
+  <div class="social-row">
     <div class="instagram"></div>
   </div>
 </footer>
 
-<div class="stitch bottom"></div>
+<div class="stitch-line bottom-stitch"></div>
 
 <script>
 const sidebar = document.getElementById("sidebar");
@@ -289,289 +286,6 @@ function closeMenu() {
   sidebar.classList.remove("active");
   overlay.classList.remove("active");
 }
-
-let count = 247;
-setInterval(() => {
-  count++;
-  document.getElementById("count").textContent = count;
-}, 3000);
-</script>
-
-</body>
-</html>
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 30px;
-}
-
-.hamburger {
-  font-size: 26px;
-  cursor: pointer;
-}
-
-.logo img {
-  height: 95px;
-  display: block;
-}
-
-.icons {
-  display: flex;
-  gap: 20px;
-}
-
-.heart {
-  font-size: 22px;
-  cursor: pointer;
-}
-
-.bag {
-  width: 22px;
-  height: 22px;
-  border: 2px solid #f2f2f2;
-  border-radius: 3px;
-  position: relative;
-}
-
-.bag::before {
-  content: '';
-  position: absolute;
-  width: 12px;
-  height: 8px;
-  border: 2px solid #f2f2f2;
-  border-bottom: none;
-  border-radius: 8px 8px 0 0;
-  top: -8px;
-  left: 3px;
-}
-
-/* ================= SIDEBAR ================= */
-
-.overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.4);
-  opacity: 0;
-  visibility: hidden;
-  transition: 0.3s ease;
-  z-index: 90;
-}
-
-.overlay.active {
-  opacity: 1;
-  visibility: visible;
-}
-
-.sidebar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  transform: translateX(-100%);
-  width: 260px;
-  height: 100%;
-  background: #111111;
-  padding: 30px 20px;
-  transition: transform 0.4s ease;
-  z-index: 100;
-}
-
-.sidebar.active {
-  transform: translateX(0);
-}
-
-.sidebar .close {
-  font-size: 26px;
-  cursor: pointer;
-  margin-bottom: 20px;
-}
-
-.sidebar input {
-  width: 100%;
-  padding: 8px;
-  margin-bottom: 30px;
-  background: #0a0a0a;
-  border: 1px solid #333;
-  color: #f2f2f2;
-}
-
-.sidebar a {
-  display: block;
-  padding: 12px 0;
-  text-decoration: none;
-  color: #f2f2f2;
-  letter-spacing: 2px;
-  border-bottom: 1px solid #f2f2f2;
-}
-
-/* ================= HERO BOX ================= */
-
-.static-hero {
-  height: 70vh;
-  background: #121212;
-}
-
-/* ================= COUNTER ================= */
-
-.counter {
-  text-align: center;
-  padding: 20px;
-  letter-spacing: 2px;
-}
-
-/* ================= SLIDES ================= */
-
-.hero {
-  position: relative;
-  height: 50vh;
-  width: 80%;
-  margin: 40px auto 120px auto;
-  overflow: hidden;
-}
-
-.slide {
-  position: absolute;
-  inset: 0;
-  opacity: 0;
-  transition: opacity 1.5s ease;
-  background: #181818;
-}
-
-.slide:nth-child(2) { background: #141414; }
-.slide:nth-child(3) { background: #1c1c1c; }
-
-.slide.active {
-  opacity: 1;
-}
-
-/* ================= FOOTER ================= */
-
-.main-footer {
-  padding: 40px 20px 120px 40px;
-}
-
-.main-footer a,
-.main-footer .label {
-  display: block;
-  margin: 12px 0;
-  color: #f2f2f2;
-  text-decoration: underline;
-  letter-spacing: 2px;
-}
-
-.social-icons {
-  display: flex;
-  gap: 18px;
-  margin-top: 10px;
-}
-
-.instagram {
-  width: 22px;
-  height: 22px;
-  border: 2px solid #f2f2f2;
-  border-radius: 6px;
-  position: relative;
-}
-
-.instagram::before {
-  content: "";
-  position: absolute;
-  width: 8px;
-  height: 8px;
-  border: 2px solid #f2f2f2;
-  border-radius: 50%;
-  top: 5px;
-  left: 5px;
-}
-
-.instagram::after {
-  content: "";
-  position: absolute;
-  width: 3px;
-  height: 3px;
-  background: #f2f2f2;
-  border-radius: 50%;
-  top: 3px;
-  right: 3px;
-}
-</style>
-</head>
-
-<body>
-
-<div class="stitch-top"></div>
-
-<header>
-  <div class="hamburger" onclick="openMenu()">☰</div>
-
-  <div class="logo">
-    <img src="unnamed.png" alt="GNAW Logo">
-  </div>
-
-  <div class="icons">
-    <div class="heart">♡</div>
-    <div class="bag"></div>
-  </div>
-</header>
-
-<div class="overlay" id="overlay" onclick="closeMenu()"></div>
-
-<div class="sidebar" id="sidebar">
-  <div class="close" onclick="closeMenu()">✕</div>
-  <input type="text" placeholder="Search...">
-  <a href="#">Skirts</a>
-  <a href="#">Shorts</a>
-  <a href="#">Tops</a>
-  <a href="#">Accessories</a>
-</div>
-
-<section class="static-hero"></section>
-
-<div class="counter">
-  <span id="count">247</span> pieces saved from landfills
-</div>
-
-<section class="hero">
-  <div class="slide active"></div>
-  <div class="slide"></div>
-  <div class="slide"></div>
-</section>
-
-<div class="main-footer">
-  <a href="about.html">About Us</a>
-  <a href="#">Contact</a>
-  <a href="#">FAQ</a>
-
-  <div class="label">Socials</div>
-  <div class="social-icons">
-    <div class="instagram"></div>
-  </div>
-</div>
-
-<div class="stitch-bottom"></div>
-
-<script>
-const sidebar = document.getElementById("sidebar");
-const overlay = document.getElementById("overlay");
-
-function openMenu() {
-  sidebar.classList.add("active");
-  overlay.classList.add("active");
-}
-
-function closeMenu() {
-  sidebar.classList.remove("active");
-  overlay.classList.remove("active");
-}
-
-const slides = document.querySelectorAll(".slide");
-let current = 0;
-
-setInterval(() => {
-  slides[current].classList.remove("active");
-  current = (current + 1) % slides.length;
-  slides[current].classList.add("active");
-}, 4000);
 
 let count = 247;
 setInterval(() => {
