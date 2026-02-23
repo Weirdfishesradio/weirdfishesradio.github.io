@@ -44,10 +44,11 @@ header {
   position: relative;
 }
 
-.logo {
-  font-family: 'Eater', cursive;
-  font-size: 42px;
-  letter-spacing: 4px;
+/* LOGO IMAGE */
+.logo img {
+  height: 50px;   /* adjust size here if needed */
+  width: auto;
+  display: block;
 }
 
 .icons {
@@ -260,7 +261,11 @@ header {
 
 <header>
   <div class="hamburger" onclick="openMenu()">☰</div>
-  <div class="logo">GNAW</div>
+
+  <div class="logo">
+    <img src="unnamed.png" alt="GNAW Logo">
+  </div>
+
   <div class="icons">
     <div class="heart">♡</div>
     <div class="bag"></div>
