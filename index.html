@@ -8,28 +8,26 @@
 <style>
 * {
   box-sizing: border-box;
-}
-
-html, body {
   margin: 0;
   padding: 0;
-  background: #0a0a0a;
+}
+
+body {
+  background: #090708;
   color: #f2f2f2;
   font-family: Arial, sans-serif;
   overflow-x: hidden;
 }
 
-/* ================= STITCH LINES ================= */
+/* ================= STITCH ================= */
 
-.stitch-top,
-.stitch-bottom {
+.stitch {
   height: 22px;
   position: relative;
-  background: #0a0a0a;
+  background: #090708;
 }
 
-.stitch-top::before,
-.stitch-bottom::before {
+.stitch::before {
   content: "";
   position: absolute;
   top: 50%;
@@ -39,8 +37,7 @@ html, body {
   transform: translateY(-50%);
 }
 
-.stitch-top::after,
-.stitch-bottom::after {
+.stitch::after {
   content: "";
   position: absolute;
   inset: 0;
@@ -53,14 +50,255 @@ html, body {
   );
 }
 
-.stitch-bottom {
+/* ================= HEADER ================= */
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 22px 30px;
+}
+
+.hamburger {
+  font-size: 26px;
+  cursor: pointer;
+}
+
+.logo img {
+  height: 90px;
+  display: block;
+}
+
+.icons {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+
+.heart {
+  font-size: 22px;
+  cursor: pointer;
+}
+
+/* CART ICON */
+
+.cart {
+  width: 22px;
+  height: 18px;
+  border: 2px solid #f2f2f2;
+  border-radius: 3px;
+  position: relative;
+  cursor: pointer;
+}
+
+.cart::before {
+  content: "";
+  position: absolute;
+  width: 12px;
+  height: 8px;
+  border: 2px solid #f2f2f2;
+  border-bottom: none;
+  border-radius: 10px 10px 0 0;
+  top: -9px;
+  left: 3px;
+}
+
+/* ================= SIDEBAR ================= */
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.3s ease;
+  z-index: 10;
+}
+
+.overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 260px;
+  height: 100%;
+  background: #111;
+  padding: 30px 20px;
+  transform: translateX(-100%);
+  transition: transform 0.4s ease;
+  z-index: 20;
+}
+
+.sidebar.active {
+  transform: translateX(0);
+}
+
+.sidebar .close {
+  font-size: 26px;
+  cursor: pointer;
+  margin-bottom: 30px;
+}
+
+.sidebar a {
+  display: block;
+  padding: 14px 0;
+  text-decoration: none;
+  color: #f2f2f2;
+  border-bottom: 1px solid #f2f2f2;
+  letter-spacing: 2px;
+}
+
+/* ================= HERO BOX ================= */
+
+.hero-box {
+  height: 70vh;
+  background: #0f0d0d;
+}
+
+/* ================= COUNTER ================= */
+
+.counter {
+  text-align: center;
+  padding: 25px;
+  letter-spacing: 2px;
+}
+
+/* ================= FOOTER ================= */
+
+footer {
+  padding: 40px 30px 100px 30px;
+}
+
+footer a,
+footer .label {
+  display: block;
+  margin: 14px 0;
+  color: #f2f2f2;
+  text-decoration: underline;
+  letter-spacing: 2px;
+}
+
+.social {
+  display: flex;
+  gap: 18px;
+  margin-top: 10px;
+}
+
+/* INSTAGRAM ICON */
+
+.instagram {
+  width: 22px;
+  height: 22px;
+  border: 2px solid #f2f2f2;
+  border-radius: 6px;
+  position: relative;
+}
+
+.instagram::before {
+  content: "";
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border: 2px solid #f2f2f2;
+  border-radius: 50%;
+  top: 5px;
+  left: 5px;
+}
+
+.instagram::after {
+  content: "";
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: #f2f2f2;
+  border-radius: 50%;
+  top: 3px;
+  right: 3px;
+}
+
+/* bottom stitch fixed */
+
+.stitch.bottom {
   position: fixed;
   bottom: 0;
   width: 100%;
 }
+</style>
+</head>
 
-/* ================= HEADER ================= */
+<body>
 
+<div class="stitch"></div>
+
+<header>
+  <div class="hamburger" onclick="openMenu()">☰</div>
+
+  <div class="logo">
+    <img src="unnamed.png" alt="GNAW Logo">
+  </div>
+
+  <div class="icons">
+    <div class="heart">♡</div>
+    <div class="cart"></div>
+  </div>
+</header>
+
+<div class="overlay" id="overlay" onclick="closeMenu()"></div>
+
+<div class="sidebar" id="sidebar">
+  <div class="close" onclick="closeMenu()">✕</div>
+  <a href="#">Skirts</a>
+  <a href="#">Shorts</a>
+  <a href="#">Tops</a>
+  <a href="#">Accessories</a>
+</div>
+
+<section class="hero-box"></section>
+
+<div class="counter">
+  <span id="count">247</span> pieces saved from landfills
+</div>
+
+<footer>
+  <a href="about.html">About Us</a>
+  <a href="#">Contact</a>
+  <a href="#">FAQ</a>
+
+  <div class="label">Socials</div>
+  <div class="social">
+    <div class="instagram"></div>
+  </div>
+</footer>
+
+<div class="stitch bottom"></div>
+
+<script>
+const sidebar = document.getElementById("sidebar");
+const overlay = document.getElementById("overlay");
+
+function openMenu() {
+  sidebar.classList.add("active");
+  overlay.classList.add("active");
+}
+
+function closeMenu() {
+  sidebar.classList.remove("active");
+  overlay.classList.remove("active");
+}
+
+let count = 247;
+setInterval(() => {
+  count++;
+  document.getElementById("count").textContent = count;
+}, 3000);
+</script>
+
+</body>
+</html>
 header {
   display: flex;
   justify-content: space-between;
