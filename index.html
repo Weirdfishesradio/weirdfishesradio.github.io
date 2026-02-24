@@ -1,121 +1,43 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GNAW</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Eater&display=swap" rel="stylesheet">
-
-<style>
-
-/* ===== BASE ===== */
 body {
   margin: 0;
-  background: #090708;
-  color: white;
-  font-family: 'Eater', cursive;
+  background: #050505; /* darker black */
+  color: #f2f2f2;
+  font-family: Arial, sans-serif;
+  overflow-x: hidden;
 }
 
-a {
-  text-decoration: none;
-  color: white;
+/* TOP + BOTTOM STITCH */
+.stitch-top,
+.stitch-bottom {
+  height: 14px;
+  background: repeating-linear-gradient(
+    90deg,
+    #f2f2f2 0px,
+    #f2f2f2 2px,
+    transparent 2px,
+    transparent 12px
+  );
 }
 
-/* ===== NAV ===== */
-nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 40px;
+.stitch-bottom {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
 }
 
-.logo {
-  font-size: 28px;
+/* Vertical stitching */
+.sidebar::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 14px;
+  height: 100%;
+  background: repeating-linear-gradient(
+    180deg,
+    #f2f2f2 0px,
+    #f2f2f2 2px,
+    transparent 2px,
+    transparent 12px
+  );
 }
-
-.nav-right {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-
-.icon {
-  width: 22px;
-  height: 22px;
-  cursor: pointer;
-}
-
-/* ===== PAGE SECTIONS ===== */
-.page {
-  display: none;
-  padding: 60px 40px;
-}
-
-.page.active {
-  display: block;
-}
-
-h1 {
-  font-size: 40px;
-  margin-bottom: 20px;
-}
-
-</style>
-</head>
-
-<body>
-
-<nav>
-  <div class="logo">GNAW</div>
-
-  <div class="nav-right">
-    
-    <!-- Instagram SVG -->
-    <a href="https://instagram.com" target="_blank">
-      <svg class="icon" viewBox="0 0 24 24" fill="white">
-        <path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm5 5.2A4.8 4.8 0 1 1 7.2 12 4.8 4.8 0 0 1 12 7.2zm6.4-.9a1.1 1.1 0 1 1-1.1-1.1 1.1 1.1 0 0 1 1.1 1.1z"/>
-      </svg>
-    </a>
-
-    <!-- Shopping Bag SVG -->
-    <svg class="icon" viewBox="0 0 24 24" fill="white">
-      <path d="M6 7V6a6 6 0 0 1 12 0v1h3v14H3V7h3zm2 0h8V6a4 4 0 0 0-8 0v1z"/>
-    </svg>
-
-  </div>
-</nav>
-
-<!-- HOME PAGE -->
-<section id="home" class="page active">
-  <h1>Home</h1>
-  <p>Welcome to GNAW.</p>
-</section>
-
-<!-- ABOUT PAGE -->
-<section id="about" class="page">
-  <h1>About</h1>
-  <p>This is the about page.</p>
-</section>
-
-<script>
-
-/* ===== PAGE SWITCHING ===== */
-
-function showPage(pageId) {
-  document.querySelectorAll('.page').forEach(page => {
-    page.classList.remove('active');
-  });
-
-  document.getElementById(pageId).classList.add('active');
-}
-
-/* LOAD HOME BY DEFAULT */
-document.addEventListener("DOMContentLoaded", function() {
-  showPage("home");
-});
-
-</script>
-
-</body>
-</html>
