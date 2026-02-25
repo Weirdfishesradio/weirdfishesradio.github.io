@@ -8,117 +8,298 @@
 <link href="https://fonts.googleapis.com/css2?family=Eater&display=swap" rel="stylesheet">
 
 <style>
-
-/* ===== BASE ===== */
 body{
 margin:0;
 background:#080607;
-color:white;
-font-family:'Eater',cursive;
+color:#f2f2f2;
+font-family:Arial,sans-serif;
 overflow-x:hidden;
 }
 
-/* ===== SIDEBAR ===== */
+/* ================= |-|-|- STITCH ================= */
+
+.stitch-top,
+.stitch-bottom{
+position:relative;
+height:28px;
+background:#080607;
+overflow:hidden;
+}
+
+.stitch-top::before,
+.stitch-bottom::before{
+content:"|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-";
+position:absolute;
+top:4px;
+left:-40px;
+white-space:nowrap;
+color:#f2f2f2;
+font-size:18px;
+letter-spacing:6px;
+}
+
+.stitch-bottom{
+position:fixed;
+bottom:0;
+width:100%;
+}
+
+/* ================= HEADER ================= */
+
+header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 30px;
+}
+
+.logo img{
+height:85px;
+width:auto;
+display:block;
+}
+
+.icons{
+display:flex;
+gap:20px;
+align-items:center;
+}
+
+.hamburger{
+font-size:26px;
+cursor:pointer;
+}
+
+.heart{
+font-size:22px;
+cursor:pointer;
+}
+
+.bag{
+width:22px;
+height:22px;
+border:2px solid #f2f2f2;
+border-radius:3px;
+position:relative;
+cursor:pointer;
+}
+
+.bag::before{
+content:'';
+position:absolute;
+width:12px;
+height:8px;
+border:2px solid #f2f2f2;
+border-bottom:none;
+border-radius:8px 8px 0 0;
+top:-8px;
+left:3px;
+}
+
+/* ================= OVERLAY ================= */
+
+.overlay{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,0.4);
+display:none;
+z-index:90;
+}
+
+.overlay.active{
+display:block;
+}
+
+/* ================= SIDEBAR ================= */
+
 .sidebar{
 position:fixed;
-left:0;
+left:-280px;
 top:0;
-height:100vh;
-width:80px;
-background:#080607;
-display:flex;
-flex-direction:column;
-align-items:center;
-padding-top:20px;
-z-index:2;
-}
-
-/* stitching */
-.sidebar::after{
-content:"|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-";
-writing-mode:vertical-rl;
-text-orientation:upright;
-position:absolute;
-right:-14px;
-top:0;
+width:260px;
 height:100%;
-color:white;
-opacity:0.6;
-pointer-events:none;
+background:#080607;
+padding:30px 20px;
+transition:left 0.4s ease;
+z-index:100;
+box-sizing:border-box;
 }
 
-/* search */
-.search{
-margin-top:20px;
-width:60px;
-padding:6px;
-background:transparent;
-border:1px solid white;
-color:white;
-outline:none;
-font-size:10px;
-text-align:center;
+.sidebar::before{
+content:"";
+position:absolute;
+top:0;
+right:14px;
+width:2px;
+height:100%;
+background:#f2f2f2;
 }
 
-/* instagram icon */
-.instagram{
-margin-top:auto;
+.sidebar::after{
+content:"|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-";
+position:absolute;
+top:10px;
+right:-4px;
+writing-mode:vertical-rl;
+color:#f2f2f2;
+letter-spacing:4px;
+}
+
+.sidebar.active{
+left:0;
+}
+
+.sidebar .close{
+font-size:26px;
+cursor:pointer;
 margin-bottom:20px;
+}
+
+.sidebar input{
+width:100%;
+padding:8px;
+margin-bottom:30px;
+background:#080607;
+border:1px solid #333;
+color:#f2f2f2;
+}
+
+.sidebar a{
+display:block;
+padding:12px 0;
+text-decoration:none;
+color:#f2f2f2;
+letter-spacing:2px;
+border-bottom:1px solid #f2f2f2;
+}
+
+/* ================= CONTENT ================= */
+
+.static-hero{
+height:70vh;
+background:#080607;
+}
+
+.counter{
+text-align:center;
+padding:20px;
+letter-spacing:2px;
+}
+
+.hero{
+position:relative;
+height:50vh;
+width:80%;
+margin:40px auto;
+overflow:hidden;
+}
+
+.slide{
+position:absolute;
+width:100%;
+height:100%;
+background:#111;
+opacity:0;
+transition:opacity 1.5s ease-in-out;
+}
+
+.slide.active{
+opacity:1;
+}
+
+/* ================= PRODUCTS ================= */
+
+.products{
+display:flex;
+justify-content:center;
+gap:40px;
+width:80%;
+margin:60px auto 140px auto;
+}
+
+.product-box{
+width:260px;
+height:340px;
+border:1px solid #f2f2f2;
+background:#111;
+}
+
+/* ================= FOOTER ================= */
+
+.main-footer{
+padding:40px 20px 140px 40px;
+}
+
+.main-footer a{
+display:block;
+margin:12px 0;
+color:#f2f2f2;
+text-decoration:underline;
+letter-spacing:2px;
+}
+
+.instagram{
+margin-top:20px;
 width:22px;
 height:22px;
 cursor:pointer;
 }
 
 .instagram svg{
-fill:white;
+fill:#f2f2f2;
 width:100%;
 height:100%;
 }
-
-/* ===== HEADER ===== */
-header{
-text-align:center;
-padding:40px 0;
-font-size:50px;
-}
-
-/* ===== PRODUCT BOXES ===== */
-.container{
-margin-left:100px;
-display:flex;
-justify-content:center;
-gap:40px;
-padding:40px;
-}
-
-.box{
-width:250px;
-height:320px;
-border:1px solid white;
-display:flex;
-align-items:center;
-justify-content:center;
-position:relative;
-}
-
-.box::after{
-content:"|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-";
-position:absolute;
-bottom:-18px;
-left:0;
-width:100%;
-text-align:center;
-color:white;
-opacity:0.6;
-pointer-events:none;
-}
-
 </style>
 </head>
+
 <body>
 
-<div class="sidebar">
-<input type="text" class="search" placeholder="search">
+<div class="stitch-top"></div>
+
+<header>
+<div class="hamburger" onclick="openMenu()">☰</div>
+<div class="logo">
+<img src="unnamed.png" alt="Logo">
+</div>
+<div class="icons">
+<div class="heart">♡</div>
+<div class="bag"></div>
+</div>
+</header>
+
+<div class="overlay" id="overlay" onclick="closeMenu()"></div>
+
+<div class="sidebar" id="sidebar">
+<div class="close" onclick="closeMenu()">☰</div>
+<input type="text" placeholder="Search...">
+<a href="#">Skirts</a>
+<a href="#">Shorts</a>
+<a href="#">Tops</a>
+<a href="#">Accessories</a>
+</div>
+
+<section class="static-hero"></section>
+
+<div class="counter">
+<span id="count">247</span> pieces saved from landfills
+</div>
+
+<section class="hero">
+<div class="slide active"></div>
+<div class="slide"></div>
+<div class="slide"></div>
+</section>
+
+<section class="products">
+<div class="product-box"></div>
+<div class="product-box"></div>
+</section>
+
+<div class="main-footer">
+<a href="about.html">About Us</a>
+<a href="#">Contact</a>
+<a href="#">FAQ</a>
 
 <div class="instagram">
 <svg viewBox="0 0 24 24">
@@ -128,12 +309,19 @@ pointer-events:none;
 
 </div>
 
-<header>GNAW</header>
+<div class="stitch-bottom"></div>
 
-<div class="container">
-<div class="box">ITEM 1</div>
-<div class="box">ITEM 2</div>
-</div>
+<script>
+function openMenu(){
+document.getElementById("sidebar").classList.add("active");
+document.getElementById("overlay").classList.add("active");
+}
+
+function closeMenu(){
+document.getElementById("sidebar").classList.remove("active");
+document.getElementById("overlay").classList.remove("active");
+}
+</script>
 
 </body>
 </html>
