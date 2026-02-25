@@ -19,20 +19,25 @@ body {
 /* TOP + BOTTOM STITCH */
 .stitch-top,
 .stitch-bottom {
-  height: 14px;
-  background: repeating-linear-gradient(
-    90deg,
-    #f2f2f2 0px,
-    #f2f2f2 2px,
-    transparent 2px,
-    transparent 8px
-  );
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: monospace;
+  letter-spacing: 4px;
+  font-size: 18px;
+}
+
+.stitch-top::before,
+.stitch-bottom::before {
+  content: "-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|";
 }
 
 .stitch-bottom {
   position: fixed;
   bottom: 0;
   width: 100%;
+  background: #0a0a0a;
 }
 
 /* HEADER */
@@ -44,10 +49,11 @@ header {
   position: relative;
 }
 
-.logo {
-  font-family: 'Eater', cursive;
-  font-size: 42px;
-  letter-spacing: 4px;
+/* LOGO IMAGE */
+.logo img {
+  height: 80px;   /* Adjust size here if you want bigger/smaller */
+  width: auto;
+  display: block;
 }
 
 .icons {
@@ -117,19 +123,14 @@ header {
 
 /* Vertical stitching */
 .sidebar::after {
-  content: "";
+  content: "-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|";
   position: absolute;
   top: 0;
   right: 0;
-  width: 14px;
-  height: 100%;
-  background: repeating-linear-gradient(
-    180deg,
-    #f2f2f2 0px,
-    #f2f2f2 2px,
-    transparent 2px,
-    transparent 8px
-  );
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  font-family: monospace;
+  letter-spacing: 2px;
 }
 
 .sidebar.active {
@@ -260,7 +261,12 @@ header {
 
 <header>
   <div class="hamburger" onclick="openMenu()">☰</div>
-  <div class="logo">GNAW</div>
+
+  <!-- LOGO IMAGE -->
+  <div class="logo">
+    <img src="unnamed.png" alt="Logo">
+  </div>
+
   <div class="icons">
     <div class="heart">♡</div>
     <div class="bag"></div>
