@@ -6,301 +6,157 @@
 <title>GNAW</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Eater&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 
 <style>
-body{
-margin:0;
-background:#080607;
-color:#f2f2f2;
-font-family:Arial,sans-serif;
-overflow-x:hidden;
+
+/* ========== BASE ========== */
+body {
+  margin: 0;
+  background-color: #080607;
+  font-family: 'Eater', cursive;
+  color: white;
 }
 
-/* ================= CLEAN STITCH ================= */
-
-.stitch-top,
-.stitch-bottom{
-position:relative;
-height:40px;
-background:#080607;
+/* ========== HEADER ========== */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
 }
 
-.stitch-top::before,
-.stitch-bottom::before{
-content:"";
-position:absolute;
-top:20px;
-left:0;
-width:100%;
-height:2px;
-background:#f2f2f2;
+.logo {
+  font-size: 32px;
+  letter-spacing: 3px;
 }
 
-.stitch-top::after,
-.stitch-bottom::after{
-content:"";
-position:absolute;
-top:6px;
-left:0;
-width:100%;
-height:28px;
-background:repeating-linear-gradient(
-to right,
-transparent 0px,
-transparent 45px,
-#f2f2f2 45px,
-#f2f2f2 47px
-);
+.icons {
+  display: flex;
+  gap: 20px;
+  font-size: 20px;
+  cursor: pointer;
 }
 
-.stitch-bottom{
-position:fixed;
-bottom:0;
-width:100%;
+/* ========== SEARCH BAR ========== */
+.search-container {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0 40px 0;
 }
 
-/* ================= HEADER ================= */
-
-header{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:20px 30px;
+.search-container input {
+  width: 300px;
+  padding: 10px 15px;
+  border: 1px solid white;
+  background: transparent;
+  color: white;
+  outline: none;
+  font-family: sans-serif;
 }
 
-.logo img{
-height:85px;
-width:auto;
-display:block;
+/* ========== BOX SECTION ========== */
+.box-section {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-bottom: 80px;
 }
 
-.icons{
-display:flex;
-gap:20px;
-align-items:center;
+.box {
+  width: 220px;
+  height: 260px;
+  border: 1px solid white;
+  position: relative;
+  overflow: hidden;
 }
 
-.hamburger{
-font-size:26px;
-cursor:pointer;
+/* ========== STITCHING ========== */
+.stitching {
+  position: absolute;
+  left: -15px;
+  top: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
 }
 
-.heart{
-font-size:22px;
-cursor:pointer;
+.stitch-line {
+  width: 2px;
+  height: 18px;
+  background: white;
 }
 
-.bag{
-width:22px;
-height:22px;
-border:2px solid #f2f2f2;
-border-radius:3px;
-position:relative;
-cursor:pointer;
+/* ========== FOOTER ========== */
+footer {
+  display: flex;
+  justify-content: center;
+  padding: 30px 0;
+  border-top: 1px solid white;
 }
 
-.bag::before{
-content:'';
-position:absolute;
-width:12px;
-height:8px;
-border:2px solid #f2f2f2;
-border-bottom:none;
-border-radius:8px 8px 0 0;
-top:-8px;
-left:3px;
+footer i {
+  font-size: 22px;
+  cursor: pointer;
 }
 
-/* ================= OVERLAY ================= */
-
-.overlay{
-position:fixed;
-inset:0;
-background:rgba(0,0,0,0.4);
-display:none;
-z-index:90;
-}
-
-.overlay.active{
-display:block;
-}
-
-/* ================= SIDEBAR ================= */
-
-.sidebar{
-position:fixed;
-left:-280px;
-top:0;
-width:260px;
-height:100%;
-background:#080607;
-padding:30px 20px;
-transition:left 0.4s ease;
-z-index:100;
-box-sizing:border-box;
-}
-
-.sidebar::before{
-content:"";
-position:absolute;
-top:0;
-right:14px;
-width:2px;
-height:100%;
-background:#f2f2f2;
-}
-
-.sidebar::after{
-content:"";
-position:absolute;
-top:0;
-right:0;
-width:28px;
-height:100%;
-background:repeating-linear-gradient(
-to bottom,
-transparent 0px,
-transparent 45px,
-#f2f2f2 45px,
-#f2f2f2 47px
-);
-}
-
-.sidebar.active{
-left:0;
-}
-
-.sidebar .close{
-font-size:26px;
-cursor:pointer;
-margin-bottom:20px;
-}
-
-.sidebar input{
-width:100%;
-padding:8px;
-margin-bottom:30px;
-background:#080607;
-border:1px solid #333;
-color:#f2f2f2;
-}
-
-.sidebar a{
-display:block;
-padding:12px 0;
-text-decoration:none;
-color:#f2f2f2;
-letter-spacing:2px;
-border-bottom:1px solid #f2f2f2;
-}
-
-/* ================= CONTENT ================= */
-
-.static-hero{
-height:70vh;
-background:#080607;
-}
-
-.counter{
-text-align:center;
-padding:20px;
-letter-spacing:2px;
-}
-
-.hero{
-position:relative;
-height:50vh;
-width:80%;
-margin:40px auto 120px auto;
-overflow:hidden;
-}
-
-.slide{
-position:absolute;
-width:100%;
-height:100%;
-background:#111;
-opacity:0;
-transition:opacity 1.5s ease-in-out;
-}
-
-.slide.active{
-opacity:1;
-}
-
-/* ================= FOOTER ================= */
-
-.main-footer{
-padding:40px 20px 140px 40px;
-}
-
-.main-footer a{
-display:block;
-margin:12px 0;
-color:#f2f2f2;
-text-decoration:underline;
-letter-spacing:2px;
-}
 </style>
 </head>
-
 <body>
 
-<div class="stitch-top"></div>
-
 <header>
-<div class="hamburger" onclick="openMenu()">☰</div>
-<div class="logo">
-<img src="unnamed.png" alt="Logo">
-</div>
-<div class="icons">
-<div class="heart">♡</div>
-<div class="bag"></div>
-</div>
+  <div class="logo">GNAW</div>
+  <div class="icons">
+    <i class="fa-solid fa-bag-shopping"></i>
+  </div>
 </header>
 
-<div class="overlay" id="overlay" onclick="closeMenu()"></div>
-
-<div class="sidebar" id="sidebar">
-<div class="close" onclick="closeMenu()">☰</div>
-<input type="text" placeholder="Search...">
-<a href="#">Skirts</a>
-<a href="#">Shorts</a>
-<a href="#">Tops</a>
-<a href="#">Accessories</a>
+<div class="search-container">
+  <input type="text" placeholder="Search">
 </div>
 
-<section class="static-hero"></section>
+<section class="box-section">
 
-<div class="counter">
-<span id="count">247</span> pieces saved from landfills
-</div>
+  <!-- BOX 1 -->
+  <div class="box">
+    <div class="stitching">
+      <div class="stitch-line"></div>
+      <div class="stitch-line"></div>
+      <div class="stitch-line"></div>
+      <div class="stitch-line"></div>
+      <div class="stitch-line"></div>
+      <div class="stitch-line"></div>
+      <div class="stitch-line"></div>
+      <div class="stitch-line"></div>
+      <div class="stitch-line"></div>
+      <div class="stitch-line"></div>
+    </div>
+  </div>
 
-<section class="hero">
-<div class="slide active"></div>
-<div class="slide"></div>
-<div class="slide"></div>
+  <!-- BOX 2 -->
+  <div class="box">
+    <div class="stitching">
+      <div class="stitch-line"></div>
+      <div class="stitch-line"></div>
+      <div class="stitch-line"></div>
+      <div class="stitch-line"></div>
+      <div class="stitch-line"></div>
+      <div class="stitch-line"></div>
+      <div class="stitch-line"></div>
+      <div class="stitch-line"></div>
+      <div class="stitch-line"></div>
+      <div class="stitch-line"></div>
+    </div>
+  </div>
+
 </section>
 
-<div class="main-footer">
-<a href="about.html">About Us</a>
-<a href="#">Contact</a>
-<a href="#">FAQ</a>
-</div>
-
-<div class="stitch-bottom"></div>
-
-<script>
-function openMenu(){
-document.getElementById("sidebar").classList.add("active");
-document.getElementById("overlay").classList.add("active");
-}
-
-function closeMenu(){
-document.getElementById("sidebar").classList.remove("active");
-document.getElementById("overlay").classList.remove("active");
-}
-</script>
+<footer>
+  <a href="#" target="_blank">
+    <i class="fa-brands fa-instagram"></i>
+  </a>
+</footer>
 
 </body>
 </html>
